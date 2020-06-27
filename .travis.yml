@@ -6,4 +6,5 @@ node_js:
   - "node"
 script:
   - cd frontend
+  - npm i
   - npm run lint
