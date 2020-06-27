@@ -3,8 +3,7 @@ branches:
   - master
 language: node_js
 node_js:
-  - "12.16.1"
+  - "node"
 script:
   - cd frontend
-  - npm i
   - npm run lint
