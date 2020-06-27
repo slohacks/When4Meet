@@ -6,7 +6,7 @@ export default (props) => {
 
   return (
     <div>
-      <h1>Name Modal</h1>
+      <h1>Name Modal hello</h1>
     </div>
 
   );
