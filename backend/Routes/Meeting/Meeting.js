@@ -1,30 +1,30 @@
-var Express = require('express');
-var router = Express.Router({caseSensitive: true});
+const Express = require('express');
 
+const router = Express.Router({ caseSensitive: true });
 
 router.baseURL = '/Meeting';
 
 router.post('/', (req, res) => {
-   console.log('Hitting Meeting POST endpoint')
+  console.log('Hitting Meeting POST endpoint');
 
-   res.end();
+  res.end();
 });
 
 router.get('/:meetingId', (req, res) => {
-   const meetingId = req.params.meetingId;
+  const { meetingId } = req.params;
 
-   console.log(`Hitting meeting GET with id ${meetingId}`);
+  console.log(`Hitting meeting GET with id ${meetingId}`);
 
-   res.end();
+  res.end();
 });
 
 router.post('/:meetingId/Availabilty/:name', (req, res) => {
-   const meetingId = req.params.meetingId;
-   const name = req.params.name;
+  const { meetingId } = req.params;
+  const { name } = req.params;
 
-   console.log(`Hitting post availability with ${meetingId} and ${name}`);
+  console.log(`Hitting post availability with ${meetingId} and ${name}`);
 
-   res.end();
+  res.end();
 });
 
 module.exports = router;
