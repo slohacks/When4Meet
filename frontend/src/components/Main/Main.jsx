@@ -13,7 +13,7 @@ import {
   NameModal,
 } from '../components';
 
-class Main extends React.Component {
+class Main extends Component {
   render() {
     return (
       <div>
