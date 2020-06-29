@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import { Navbar, Nav, } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import "./Main.css";
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import './Main.css';
 // Styles for react-date-range
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import {
   OneTimeMeeting,
   About,
   ReoccuringMeeting,
   NameModal,
-} from "../components";
+} from '../components';
 
-class Main extends Component {
+class Main extends React.Component {
   render() {
     return (
       <div>
         <Navbar bg="light" expand="lg">
           <Navbar.Brand
             href="/"
-            style={{ fontWeight: 500, fontSize: "20px", lineHeight: "17px" }}
+            style={{ fontWeight: 500, fontSize: '20px', lineHeight: '17px' }}
           >
             When4Meet
           </Navbar.Brand>
