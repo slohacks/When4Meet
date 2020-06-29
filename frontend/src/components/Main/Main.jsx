@@ -1,7 +1,6 @@
-/* eslint-disable */
 import React, { Component } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
-import { Navbar, Nav, Row, Col } from "react-bootstrap";
+import { Route, Switch } from "react-router-dom";
+import { Navbar, Nav, } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./Main.css";
 // Styles for react-date-range
@@ -17,16 +16,24 @@ import {
 class Main extends Component {
   render() {
     return (
-      // to do: figure out styling to align to right
       <div>
-        <nav class="navbar navbar-light bg-light justify-content-between">
-          <a class="navbar-brand" href="/">
-            <h4>When4Meet</h4>
-          </a>
-          <a href="/about" className="nav-item mr-sm-2">About</a>
-          <a href="/about" className="nav-item ">Another Link</a>
-        </nav>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand
+            href="/"
+            style={{ fontWeight: 500, fontSize: "20px", lineHeight: "17px" }}
+          >
+            When4Meet
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <LinkContainer to="/about">
+                <Nav.Link>About</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
         <Switch>
           <Route
             exact
