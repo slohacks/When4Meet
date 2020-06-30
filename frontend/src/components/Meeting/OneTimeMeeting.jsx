@@ -1,13 +1,63 @@
-/* eslint-disable */
 import React from 'react';
 import { DateRange } from 'react-date-range';
+// import {useState} from 'react'
 
-export default (props) => {
+export default (/* props */) => {
   console.log('Rendering OneTimeMeeting');
 
+  /* const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: 'selection'
+    }
+  ]);
+  */
+
   return (
-    <div>
-      <h1>OneTimeMeeting Component</h1>
+    <div style={{ border: '2px solid black', padding: '20px', width: '35%' }}>
+      <h2>One-Time Meeting </h2>
+      <form>
+        <span> Meeting Title</span>
+        <input
+          className="input-group mt-1 mb-2"
+          style={{ width: '100%' }}
+          placeholder="Meeting Title"
+        />
+        <span>
+          <span> Start </span>
+          <input
+            className="ml-2 mr-3"
+            style={{ width: '35%' }}
+            placeholder="9:00 am"
+          />
+          <span> End </span>
+          <input
+            className="ml-2"
+            style={{ width: '35%' }}
+            placeholder="5:00 pm"
+          />
+        </span>
+        <center>
+          <p className="mt-2 mb-n2">
+            Select the potential dates for yout meeting
+          </p>
+          <DateRange
+            editableDateInputs
+            // onChange={item => setState([item.selection])}
+            moveRangeOnFirstSelection={false}
+            // ranges={state}
+          />
+        </center>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={console.log('Submitted')}
+        >
+          Create Event
+        </button>
+
+      </form>
     </div>
 
   );
