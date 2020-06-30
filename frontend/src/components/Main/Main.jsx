@@ -1,23 +1,37 @@
 /* eslint-disable */
-import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
-import {
-  Navbar, Nav, Row, Col,
-} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import './Main.css';
+import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import "./Main.css";
 // Styles for react-date-range
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import {
-  OneTimeMeeting, About, ReoccuringMeeting, NameModal,
-} from '../components';
+  OneTimeMeeting,
+  About,
+  ReoccuringMeeting,
+  NameModal,
+} from "../components";
 
 class Main extends Component {
   render() {
     return (
       <div>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="/" className="nav-branding">
+            When4Meet
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <LinkContainer to="/about">
+                <Nav.Link>About</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
         <Switch>
           <Route
             exact
@@ -32,7 +46,6 @@ class Main extends Component {
           <Route path="/meeting/:id" render={() => <NameModal />} />
           <Route path="/about" render={() => <About />} />
         </Switch>
-
       </div>
     );
   }
