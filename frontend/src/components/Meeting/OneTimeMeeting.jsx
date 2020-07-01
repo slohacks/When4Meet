@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DateRange } from 'react-date-range';
-// import {useState} from 'react'
 
-export default (/* props */) => {
+export default () => {
   console.log('Rendering OneTimeMeeting');
-
-  /* const [state, setState] = useState([
+  const [state, setState] = useState([
     {
       startDate: new Date(),
       endDate: null,
-      key: 'selection'
-    }
+      key: 'selection',
+    },
   ]);
-  */
 
   return (
     <div style={{ border: '2px solid black', padding: '20px', width: '35%' }}>
@@ -27,26 +24,26 @@ export default (/* props */) => {
         <span>
           <span> Start </span>
           <input
-            className="ml-2 mr-3"
+            className="ml-1 mr-3"
             style={{ width: '35%' }}
             placeholder="9:00 am"
           />
           <span> End </span>
           <input
-            className="ml-2"
+            className="ml-1"
             style={{ width: '35%' }}
             placeholder="5:00 pm"
           />
         </span>
         <center>
-          <p className="mt-2 mb-n2">
+          <p className="mt-2">
             Select the potential dates for yout meeting
           </p>
           <DateRange
             editableDateInputs
-            // onChange={item => setState([item.selection])}
+            onChange={(item) => setState([item.selection])}
             moveRangeOnFirstSelection={false}
-            // ranges={state}
+            ranges={state}
           />
         </center>
         <button
