@@ -28,9 +28,9 @@ export default () => {
           <Form.Row>
             <Form.Label className="font-weight-bold mt-1">Start</Form.Label>
             <Col>
-              <Form.Control controlId="startTime" as="select" placeholder="9:00 am" >
+              <Form.Control controlId="startTime" as="select" placeholder="9:00 am">
                 <option value=""> </option>
-                <option value="12:00am"> 12:00am </option>       
+                <option value="12:00am"> 12:00am </option>
                 <option value="12:30am"> 12:30am </option>
                 <option value="1:00am"> 1:00am </option>
                 <option value="1:30am"> 1:30am </option>
@@ -83,8 +83,8 @@ export default () => {
             <Form.Label className="font-weight-bold mt-1">End</Form.Label>
             <Col>
               <Form.Control controlId="endTime" as="select" placeholder="5:00 pm">
-              <option value=""> </option>
-                <option value="12:00am"> 12:00am </option>       
+                <option value=""> </option>
+                <option value="12:00am"> 12:00am </option>
                 <option value="12:30am"> 12:30am </option>
                 <option value="1:00am"> 1:00am </option>
                 <option value="1:30am"> 1:30am </option>
@@ -133,7 +133,7 @@ export default () => {
                 <option value="11:00pm"> 11:00pm </option>
                 <option value="11:30pm"> 11:30pm </option>
               </Form.Control>
-            
+
             </Col>
           </Form.Row>
         </Form.Group>
