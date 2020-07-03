@@ -1,0 +1,19 @@
+/* h4 {
+    font-family: Helvetica Neue;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: 33px;
+} */
+
+.modal-background-color{
+    background: #EFEFEF;
+    width: 100%;
+
+}
+
+.modal-content{
+    background: #EFEFEF;
+    width: 55%;
+
+}
