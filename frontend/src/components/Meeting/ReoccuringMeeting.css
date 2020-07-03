@@ -5,7 +5,7 @@
 }
 
 .day-enabled {
-    background-color: #0FC697 !important;
+    background-color: #0FC697;
     flex-grow: 1;
     width: 100%;
     height: 246px;
@@ -13,7 +13,7 @@
 }
 
 .day-disabled {
-    background-color: #C4C4C4 !important;
+    background-color: #C4C4C4;
     flex-grow: 1;
     width: 100%;
     height: 246px;
