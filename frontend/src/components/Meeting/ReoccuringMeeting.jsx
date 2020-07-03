@@ -1,46 +1,57 @@
-/* eslint-disable */
 import React, { useState } from 'react';
-import { Button, Container, Col, Form} from 'react-bootstrap';
+import {
+  Button, Container, Col, Form,
+} from 'react-bootstrap';
 import './ReoccuringMeeting.css';
 
-export default (props) => {
+export default () => {
   console.log('Rendering ReoccuringMeeting');
 
-  const [dayStates, setDayStates]  = useState({
+  const Mon = 'Mon';
+  const Tue = 'Tue';
+  const Wed = 'Wed';
+  const Thu = 'Thu';
+  const Fri = 'Fri';
+  const Sat = 'Sat';
+  const Sun = 'Sun';
+
+  const [dayStates, setDayStates] = useState({
     Mon: false,
     Tue: false,
     Wed: false,
     Thu: false,
     Fri: false,
     Sat: false,
-    Sun: false
+    Sun: false,
   });
 
-  const onClickHandler = (day) => {
-    switch(day) {
-      case('Mon'):
-        setDayStates({...dayStates, Mon: !(dayStates.Mon)})
+  const onDaySelection = (day) => {
+    switch (day) {
+      case (Mon):
+        setDayStates({ ...dayStates, Mon: !(dayStates.Mon) });
         break;
-      case('Tue'):
-        setDayStates({...dayStates, Tue: !(dayStates.Tue)})
+      case (Tue):
+        setDayStates({ ...dayStates, Tue: !(dayStates.Tue) });
         break;
-      case('Wed'):
-        setDayStates({...dayStates, Wed: !(dayStates.Wed)})
+      case (Wed):
+        setDayStates({ ...dayStates, Wed: !(dayStates.Wed) });
         break;
-      case('Thu'):
-        setDayStates({...dayStates, Thu: !(dayStates.Thu)})
+      case (Thu):
+        setDayStates({ ...dayStates, Thu: !(dayStates.Thu) });
         break;
-      case('Fri'):
-        setDayStates({...dayStates, Fri: !(dayStates.Fri)})
+      case (Fri):
+        setDayStates({ ...dayStates, Fri: !(dayStates.Fri) });
         break;
-      case('Sat'):
-        setDayStates({...dayStates, Sat: !(dayStates.Sat)})
+      case (Sat):
+        setDayStates({ ...dayStates, Sat: !(dayStates.Sat) });
         break;
-      case('Sun'):
-        setDayStates({...dayStates, Sun: !(dayStates.Sun)})
+      case (Sun):
+        setDayStates({ ...dayStates, Sun: !(dayStates.Sun) });
+        break;
+      default:
         break;
     }
-  }
+  };
 
   return (
     <Container id="ui-container" fluid>
@@ -49,7 +60,7 @@ export default (props) => {
         {/* meeting title input */}
         <Form.Group>
           <Form.Label className="font-weight-bold">Meeting Title</Form.Label>
-          <Form.Control type="meeting-title" placeholder="Meeting Title"/>
+          <Form.Control type="meeting-title" placeholder="Meeting Title" />
         </Form.Group>
 
         {/* start/end time input */}
@@ -172,31 +183,31 @@ export default (props) => {
             <Form.Label className="font-weight-bold mt-1 mb-n1">Select the days available for your meeting</Form.Label>
             <Form.Row>
               <Col>
-                <Button onClick={() => onClickHandler('Mon')} variant={dayStates.Mon ? "day-enabled" : "day-disabled"}/>
+                <div onClick={() => onDaySelection(Mon)} onKeyPress={() => onDaySelection(Mon)} role="button" tabIndex={0} aria-label="Monday" className={dayStates.Mon ? 'day-enabled' : 'day-disabled'} />
                 <Form.Label className="day-of-week">Mon</Form.Label>
               </Col>
               <Col>
-                <Button onClick={() => onClickHandler('Tue')} variant={dayStates.Tue ? "day-enabled" : "day-disabled"}/>
+                <div onClick={() => onDaySelection(Tue)} onKeyPress={() => onDaySelection(Tue)} role="button" tabIndex={0} aria-label="Tuesday" className={dayStates.Tue ? 'day-enabled' : 'day-disabled'} />
                 <Form.Label className="day-of-week">Tue</Form.Label>
               </Col>
               <Col>
-                <Button onClick={() => onClickHandler('Wed')} variant={dayStates.Wed ? "day-enabled" : "day-disabled"}/>
+                <div onClick={() => onDaySelection(Wed)} onKeyPress={() => onDaySelection(Wed)} role="button" tabIndex={0} aria-label="Wednesday" className={dayStates.Wed ? 'day-enabled' : 'day-disabled'} />
                 <Form.Label className="day-of-week">Wed</Form.Label>
               </Col>
               <Col>
-                <Button onClick={() => onClickHandler('Thu')} variant={dayStates.Thu ? "day-enabled" : "day-disabled"}/>
+                <div onClick={() => onDaySelection(Thu)} onKeyPress={() => onDaySelection(Thu)} role="button" tabIndex={0} aria-label="Thursday" className={dayStates.Thu ? 'day-enabled' : 'day-disabled'} />
                 <Form.Label className="day-of-week">Thu</Form.Label>
               </Col>
               <Col>
-                <Button onClick={() => onClickHandler('Fri')} variant={dayStates.Fri ? "day-enabled" : "day-disabled"}/>
+                <div onClick={() => onDaySelection(Fri)} onKeyPress={() => onDaySelection(Fri)} role="button" tabIndex={0} aria-label="Friday" className={dayStates.Fri ? 'day-enabled' : 'day-disabled'} />
                 <Form.Label className="day-of-week">Fri</Form.Label>
               </Col>
               <Col>
-                <Button onClick={() => onClickHandler('Sat')} variant={dayStates.Sat ? "day-enabled" : "day-disabled"}/>
+                <div onClick={() => onDaySelection(Sat)} onKeyPress={() => onDaySelection(Sat)} role="button" tabIndex={0} aria-label="Saturday" className={dayStates.Sat ? 'day-enabled' : 'day-disabled'} />
                 <Form.Label className="day-of-week">Sat</Form.Label>
               </Col>
               <Col>
-                <Button onClick={() => onClickHandler('Sun')} variant={dayStates.Sun ? "day-enabled" : "day-disabled"}/>
+                <div onClick={() => onDaySelection(Sun)} onKeyPress={() => onDaySelection(Sun)} role="button" tabIndex={0} aria-label="Sunday" className={dayStates.Sun ? 'day-enabled' : 'day-disabled'} />
                 <Form.Label className="day-of-week">Sun</Form.Label>
               </Col>
             </Form.Row>

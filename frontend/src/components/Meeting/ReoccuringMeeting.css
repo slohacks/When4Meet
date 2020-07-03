@@ -4,7 +4,7 @@
     padding: 24px;
 }
 
-.btn-day-enabled {
+.day-enabled {
     background-color: #0FC697 !important;
     flex-grow: 1;
     width: 100%;
@@ -12,7 +12,7 @@
     border-radius: 7px;
 }
 
-.btn-day-disabled {
+.day-disabled {
     background-color: #C4C4C4 !important;
     flex-grow: 1;
     width: 100%;
