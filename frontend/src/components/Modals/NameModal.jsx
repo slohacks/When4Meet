@@ -3,40 +3,38 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import './NameModal.css'
+import './NameModal.css';
 
-
-export default (props) => {
+export default () => {
   console.log('Rendering NameModal');
 
   const [state, setState] = React.useState({
-    showModal: true
+    showModal: true,
   });
 
   return (
 
-      <Modal show={state.showModal} id= "modalcont">
-        <div className="modal-background-color">
+    <Modal show={state.showModal} id="modalcont">
+      <div className="modal-background-color">
 
-          <Modal.Body>
-            
-            <Modal.Title className="margins text-center">Meeting Title</Modal.Title>
-              <Form>
-                <Form.Group controlId="exampleForm.ControlInput1">
-                  <Form.Label><h5>What's your name?</h5></Form.Label>
-                  <Form.Control type="name" placeholder="Name" />
-                </Form.Group>
-              </Form>
+        <Modal.Body>
 
-              <Button variant="primary" size="sm" onClick={() => setState({showModal: false})}>
-                Continue
-              </Button>
-            
-          </Modal.Body>
+          <Modal.Title className="margins text-center">Meeting Title</Modal.Title>
+          <Form>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label><h5>What&apos;s your name?</h5></Form.Label>
+              <Form.Control type="name" placeholder="Name" />
+            </Form.Group>
+          </Form>
 
-        </div>
-      </Modal>
-    
+          <Button variant="primary" size="sm" onClick={() => setState({ showModal: false })}>
+            Continue
+          </Button>
+
+        </Modal.Body>
+
+      </div>
+    </Modal>
 
   );
 };
