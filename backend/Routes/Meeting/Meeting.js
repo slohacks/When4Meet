@@ -7,6 +7,7 @@ router.baseURL = '/Meeting';
 router.post('/', (req, res) => {
   console.log('Hitting Meeting POST endpoint');
 
+  res.location('/meeting/0');
   res.end();
 });
 

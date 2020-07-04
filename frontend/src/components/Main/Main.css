@@ -3,3 +3,8 @@
     font-size: 20px;
     line-height: 17px;
 }
+
+.card-container{
+    display: flex;
+    justify-content: space-evenly;
+}
