@@ -1,9 +1,3 @@
-#ui-container {
-    background-color: #EFEFEF;
-    border-radius: 20px;
-    padding: 24px;
-}
-
 .day-enabled {
     background-color: #0FC697;
     flex-grow: 1;
