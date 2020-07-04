@@ -16,22 +16,22 @@ export default () => {
 
     <Modal show={state.showModal} id="modalcont">
 
-        <Modal.Body>
+      <Modal.Body>
 
-          <Modal.Title className="text-center">Meeting Title</Modal.Title>
-          
-          <Form>
-            <Form.Group>
-              <Form.Label><h5>What&apos;s your name?</h5></Form.Label>
-              <Form.Control type="name" placeholder="Name" />
-            </Form.Group>
-          </Form>
+        <Modal.Title className="text-center">Meeting Title</Modal.Title>
 
-          <Button variant="primary" size="sm" onClick={() => setState({ showModal: false })}>
-            Continue
-          </Button>
+        <Form>
+          <Form.Group>
+            <Form.Label><h5>What&apos;s your name?</h5></Form.Label>
+            <Form.Control type="name" placeholder="Name" />
+          </Form.Group>
+        </Form>
 
-        </Modal.Body>
+        <Button variant="primary" size="sm" onClick={() => setState({ showModal: false })}>
+          Continue
+        </Button>
+
+      </Modal.Body>
 
     </Modal>
 
