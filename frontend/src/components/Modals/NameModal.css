@@ -1,17 +1,1 @@
-.margins{
-    margin-top: 5px;
-}
-
-.modal-background-color{
-    background: #EFEFEF;
-    width: 100%;
-
-}
-
-
-/* if u use id, use a hashtag */
-#modalcont{
-    background: #EFEFEF;
-
-    
-}
+/* if u use id, use a hashtag; if class use period */

@@ -15,13 +15,13 @@ export default () => {
   return (
 
     <Modal show={state.showModal} id="modalcont">
-      <div className="modal-background-color">
 
         <Modal.Body>
 
-          <Modal.Title className="margins text-center">Meeting Title</Modal.Title>
+          <Modal.Title className="text-center">Meeting Title</Modal.Title>
+          
           <Form>
-            <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Group>
               <Form.Label><h5>What&apos;s your name?</h5></Form.Label>
               <Form.Control type="name" placeholder="Name" />
             </Form.Group>
@@ -33,7 +33,6 @@ export default () => {
 
         </Modal.Body>
 
-      </div>
     </Modal>
 
   );
