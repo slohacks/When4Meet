@@ -1,10 +1,6 @@
-/* h4 {
-    font-family: Helvetica Neue;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 70px;
-    line-height: 33px;
-} */
+.margins{
+    margin-top: 5px;
+}
 
 .modal-background-color{
     background: #EFEFEF;
@@ -12,8 +8,10 @@
 
 }
 
-.modal-content{
-    background: #EFEFEF;
-    width: 55%;
 
+/* if u use id, use a hashtag */
+#modalcont{
+    background: #EFEFEF;
+
+    
 }
