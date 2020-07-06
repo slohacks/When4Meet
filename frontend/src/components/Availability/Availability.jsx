@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Button, Container,
+  Button,
 } from 'react-bootstrap';
-import './Availability.css';
 
 export default (props) => {
   console.log(`Rendering Availability with props: ${props}`);
@@ -12,11 +11,11 @@ export default (props) => {
   } = props;
 
   return (
-    <Container id="ui-container" fluid>
+    <div className="ui-container">
       <h3>{title}</h3>
       <h6>{subtitle}</h6>
       {component}
       {btn ? <Button variant="primary">Confirm</Button> : ''}
-    </Container>
+    </div>
   );
 };

@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
+import './Meeting.css';
 
 export default () => {
   console.log('Rendering OneTimeMeeting');
@@ -17,7 +18,7 @@ export default () => {
   ]);
 
   return (
-    <div style={{ borderRadius: '20px', backgroundColor: '#EFEFEF', padding: '24px' }}>
+    <div className="ui-container">
       <h3>One-Time Meeting </h3>
       <Form>
         <Form.Group>
