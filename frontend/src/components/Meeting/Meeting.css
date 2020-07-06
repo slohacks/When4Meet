@@ -1,8 +1,8 @@
-#ui-container {
+.ui-container {
    background-color: #EFEFEF;
    border-radius: 20px;
    margin: 24px;
    padding: 24px;
-   max-width: 45%;
-   height: 80vh;
+   width: 40%;
+   height: 575px;
 }

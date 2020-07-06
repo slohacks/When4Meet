@@ -3,6 +3,7 @@ import {
   Button, Col, Form,
 } from 'react-bootstrap';
 import './ReoccuringMeeting.css';
+import './Meeting.css';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
 
 export default () => {
@@ -55,7 +56,7 @@ export default () => {
   };
 
   return (
-    <div style={{ borderRadius: '20px', backgroundColor: '#EFEFEF', padding: '24px' }}>
+    <div className="ui-container">
       <h3>Reoccuring Meeting</h3>
       <Form>
         {/* meeting title input */}
