@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "4188ce34-5411-4211-9557-a6172b98711d",
+		"name": "When4Meet tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DEV-1 Tests",
+			"item": [
+				{
+					"name": "Reset DB",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "acea7c64-f17d-4c2c-95ad-45f0991adc58",
+								"exec": [
+									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"No body\", () => !pm.response.to.have.body);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/DB",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"DB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Meeting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9901f4ff-f138-4274-96f8-b0137b5f5ab1",
+								"exec": [
+									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+									"",
+									"let locURL;",
+									"locURL = pm.response.headers.get(\"Location\");",
+									"pm.test(\"Location Header\", () => pm.expect(pm.response.headers.get(\"Location\")).to.eql('/Meeting/1'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"SLO Hacks General Meeting\",\n    \"startTime\": \"9:00am\",\n    \"endTime\": \"5:00pm\",\n    \"timezone\": \"PST\",\n    \"isReoccuring\": true,\n    \"days\": \"[\\\"Mon\\\", \\\"Tue\\\", \\\"Thur\\\", \\\"Sun\\\"]\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Meeting",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Meeting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Meeting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "30dc80d8-17e0-4cc3-9a2c-df91120a7354",
+								"exec": [
+									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+									"",
+									"pm.test(\"Returns Meeting\", () => pm.expect(pm.response.json()).is.eql({",
+									"    id: 1,",
+									"    name: 'SLO Hacks General Meeting',",
+									"    startTime: '9:00am',",
+									"    endTime: '5:00pm',",
+									"    timezone: 'PST',",
+									"    isReoccuring: 1,",
+									"    isOneTime: null,",
+									"    days: ['Mon', 'Tue', 'Thur', 'Sun']",
+									"}));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Meeting/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Meeting",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Meeting 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29373966-c714-42e5-a8d7-180d4c956a99",
+								"exec": [
+									"pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Meeting/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Meeting",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
