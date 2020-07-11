@@ -50,11 +50,13 @@ class Main extends Component {
                 <Availability title='Mark your Availability' 
                 subtitle='Click on the times you are availible' 
                 component={<About/>}
-                btn={true}/>
+                btn={true}
+                {...this.props}/>
                 <Availability title='Team Availability' 
                 subtitle='Mouse over to see who is availible' 
                 component={<About/>}
-                btn={false}/>
+                btn={false}
+                {...this.props}/>
               </div>
               )} 
             />
