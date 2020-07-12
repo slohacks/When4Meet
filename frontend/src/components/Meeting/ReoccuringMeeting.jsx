@@ -4,6 +4,8 @@ import {
 } from 'react-bootstrap';
 import './ReoccuringMeeting.css';
 import './Meeting.css';
+import { useHistory } from 'react-router-dom';
+import postReoccuringMeeting from '../../api';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
 
 export default () => {
@@ -11,8 +13,8 @@ export default () => {
 
   const KEY = 0;
   const VAL = 1;
-  const initialStartTime = '9:00am'
-  const initialEndTime   = '5:00pm'
+  const initialStartTime = '9:00am';
+  const initialEndTime = '5:00pm';
   const Mon = 'Mon';
   const Tue = 'Tue';
   const Wed = 'Wed';
@@ -65,22 +67,28 @@ export default () => {
     }
   };
 
-  const onFormSubmit = async () => {
-    // var rp = require('request-promise');
-    let dayArray = Object.entries(dayStates).filter(dayState => dayState[VAL]).map(dayState => dayState[KEY]);
-    
-    const formData = {
+  const history = useHistory();
+  const handleFinalSubmit = async (e) => {
+    const location = await postReoccuringMeeting(e);
+    history.push(location);
+  };
+
+  const onFormSubmit = () => {
+    let dayArray = Object.entries(dayStates).filter((dayState) => dayState[VAL]);
+    dayArray = dayArray.map((dayState) => dayState[KEY]);
+
+    const body = {
       name: inputs.meetingTitle,
       startTime: inputs.startTime,
       endTime: inputs.endTime,
       timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone).toString(),
       isReoccuring: true,
       isOneTime: false,
-      days: dayArray
+      days: dayArray,
     };
 
-    console.log(formData);
-  }
+    handleFinalSubmit(body);
+  };
 
   return (
     <div className="ui-container">
@@ -89,10 +97,10 @@ export default () => {
         {/* meeting title input */}
         <Form.Group>
           <Form.Label className="font-weight-bold">Meeting Title</Form.Label>
-          <Form.Control 
-            controlId="meetingTitle" 
-            placeholder="Meeting Title" 
-            onChange={(e) => setInputs({ ...inputs, meetingTitle: e.target.value})}
+          <Form.Control
+            controlId="meetingTitle"
+            placeholder="Meeting Title"
+            onChange={(e) => setInputs({ ...inputs, meetingTitle: e.target.value })}
             value={inputs.meetingTitle}
           />
         </Form.Group>
@@ -102,13 +110,13 @@ export default () => {
           <Form.Row>
             <Form.Label className="font-weight-bold mt-1">Start</Form.Label>
             <Col>
-              <Form.Control controlId="startTime" as="select" placeholder={initialStartTime} value={inputs.startTime} onChange={(e) => setInputs({ ...inputs, startTime: e.target.value})}>
+              <Form.Control controlId="startTime" as="select" placeholder={initialStartTime} value={inputs.startTime} onChange={(e) => setInputs({ ...inputs, startTime: e.target.value })}>
                 {START_OPTIONS}
               </Form.Control>
             </Col>
             <Form.Label className="font-weight-bold mt-1">End</Form.Label>
             <Col>
-              <Form.Control controlId="endTime" as="select" placeholder={initialEndTime} value={inputs.endTime} onChange={(e) => setInputs({ ...inputs, endTime: e.target.value})}>
+              <Form.Control controlId="endTime" as="select" placeholder={initialEndTime} value={inputs.endTime} onChange={(e) => setInputs({ ...inputs, endTime: e.target.value })}>
                 {END_OPTIONS}
               </Form.Control>
             </Col>
