@@ -70,13 +70,13 @@ export default () => {
           <Form.Row>
             <Form.Label className="font-weight-bold mt-1">Start</Form.Label>
             <Col>
-              <Form.Control controlId="startTime" as="select" placeholder="9:00 am">
+              <Form.Control as="select" defaultValue="9:00am">
                 {START_OPTIONS}
               </Form.Control>
             </Col>
             <Form.Label className="font-weight-bold mt-1">End</Form.Label>
             <Col>
-              <Form.Control controlId="endTime" as="select" placeholder="5:00 pm">
+              <Form.Control as="select" defaultValue="5:00pm">
                 {END_OPTIONS}
               </Form.Control>
             </Col>
