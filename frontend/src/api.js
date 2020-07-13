@@ -1,31 +1,29 @@
 // const baseURL = 'http://localhost:3001/';
 import rp from 'request-promise';
 
-export default function postOneTimeMeeting(state) {
-  var OTM = {
+export default function postOneTimeMeeting(state, dayArray) {
+  const OTM = {
     method: 'POST',
     uri: 'http://localhost:3001/Meeting',
-    /*body: {
-        name: state.meetingName, 
-        startTime: state.startTime,
-        endTime: state.endTime, 
-        timeZone: state.timeZone,
-        isReoccuring: state.isReoccuring, 
-        isOneTime: state.isOneTime, 
-        days: 'Test', //Incomplete
+    body: {
+      name: state.meetingName,
+      startTime: state.startTime,
+      endTime: state.endTime,
+      timeZone: state.timeZone,
+      isReoccuring: state.isReoccuring,
+      isOneTime: state.isOneTime,
+      days: dayArray,
     },
-    json: true, */
-    resolveWithFulLResponse: true,
+    json: true,
+    resolveWithFullResponse: true,
   };
-  rp(OTM)
-    .then(function (parsedBody) {
-        //history.push(parsedBody.uri);
-        console.log(parsedBody);
-        console.log('PASSED');
+  const location = rp(OTM)
+    .then((parsedBody) => {
+      console.log('PASSED');
+      return (parsedBody.headers.location);
     })
-    .catch(function (err) {
-        // POST failed...
-        console.log('Failed')
+    .catch((err) => {
+      console.log('Failed', err); // POST failed...
     });
-  return false;
+  return location;
 }

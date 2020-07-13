@@ -1,42 +1,51 @@
 import React, { useState } from 'react';
 import { DateRange } from 'react-date-range';
 import { addDays } from 'date-fns';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
+import { Form, Button, Col } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
 import './Meeting.css';
-import postOneTimeMeeting from './../../api.js';
+import postOneTimeMeeting from '../../api';
 
 export default () => {
   console.log('Rendering OneTimeMeeting');
-  
-  const [dateChange, setDateChange] = useState([
+  const [date, setDate] = useState([
     {
       startDate: new Date(),
       endDate: addDays(new Date(), 7),
       key: 'selection',
     },
   ]);
-
   const initialInput = {
-    meetingName: "",
-    startTime: "9:00am",
-    endTime: "5:00pm",
+    meetingName: '',
+    startTime: '9:00am',
+    endTime: '5:00pm',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone.toString(),
     isRecurring: null,
     isOneTime: true,
-    //days: ["Test", "Test2"],
   };
   const [state, setState] = useState(initialInput);
-  const {meetingName, startTime, endTime} = state;
-  
-  const handleChange = e => {
-    setState({...state, [e.target.name]: e.target.value});
-  }
-  const handleFinalSubmit = e => {
-    postOneTimeMeeting(state);
-  }
+  const { meetingName, startTime, endTime } = state;
+
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const history = useHistory();
+  const handleFinalSubmit = async () => {
+    // Creates array of days for post request
+    const dayArray = [];
+    const startDate = moment(date[0].startDate);
+    const endDate = moment(date[0].endDate);
+    while (startDate.format('YYYY-MM-DD') !== endDate.format('YYYY-MM-DD')) {
+      dayArray.push(startDate.format('YYYY-MM-DD'));
+      startDate.add(1, 'day');
+    }
+    // Make POST request and then redirect to meeting page
+    const location = await postOneTimeMeeting(state, dayArray);
+    history.push(location);
+  };
 
   return (
     <div className="ui-container">
@@ -69,21 +78,16 @@ export default () => {
             <Form.Label className="font-weight-bold ml-4 mb-n1">Select the potential dates for your meeting</Form.Label>
             <Col>
               <DateRange
-                fixedHeight={true}
+                fixedHeight
                 showDateDisplay={false}
-                onChange={(item) => setDateChange([item.selection])}
                 moveRangeOnFirstSelection={false}
-                ranges={dateChange}
+                onChange={(item) => setDate([item.selection])}
+                ranges={date}
               />
             </Col>
           </Form.Group>
         </Form.Row>
-        <Button 
-          className="primary" 
-          type="button" /* put this back when done testing type="submit"*/
-          onClick={handleFinalSubmit}>
-            Create Event
-            </Button>
+        <Button className="primary" type="button" onClick={handleFinalSubmit}>Create Event</Button>
       </Form>
     </div>
   );
