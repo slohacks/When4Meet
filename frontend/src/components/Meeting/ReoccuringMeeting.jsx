@@ -11,8 +11,6 @@ import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
 export default () => {
   console.log('Rendering ReoccuringMeeting');
 
-  const KEY = 0;
-  const VAL = 1;
   const initialStartTime = '9:00am';
   const initialEndTime = '5:00pm';
   const Mon = 'Mon';
@@ -74,8 +72,13 @@ export default () => {
   };
 
   const onFormSubmit = () => {
-    let dayArray = Object.entries(dayStates).filter((dayState) => dayState[VAL]);
-    dayArray = dayArray.map((dayState) => dayState[KEY]);
+    // Checks if day has been enabled, if so push name of day to dayArray
+    const dayArray = [];
+    Object.entries(dayStates).forEach((day) => {
+      if (day[1]) {
+        dayArray.push(day[0]);
+      }
+    });
 
     const body = {
       name: inputs.meetingTitle,
