@@ -9,18 +9,52 @@ import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
 export default () => {
   console.log('Rendering AvailabilitySelector');
 
+  var moment = require('moment'); // require
+  moment().format(); 
+
   const name = 'SLO Hacks General Meeting';
-  const startTime = '9:00am';
-  const endTime = '5:00pm';
+  const startTime = '5:00am';
+  const endTime = '12:30pm';
   const timezone = 'PST';
   const isReoccuring = true;
-  const days = ['Mon', 'Wed', 'Fri', 'Sat', 'sat', '3', '5'];
+  const days = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  
+  var startmil = moment(startTime, "hh:mm A").format("HH:mm");
+  var startt = moment(startmil, "HH:mm");
 
-  for (let i = 0; i < days.length; i++) {
+  var endmil = moment(endTime, "hh:mm A").format("HH:mm");
+  var endt = moment(endmil, "HH:mm");
+
+  
+  const hours = [];
+  const duration = (endt.diff(startt, "hours"));
+  const endHour = parseInt(duration);
+  const startHour = startTime.slice(0,4);
+
+  for (let hour = 0; hour < endHour+1; hour++) {
+    hours.push(
+      moment({ hour })
+        .add(startHour, 'hours')
+        .format('h:mm A')
+    );
+    hours.push(
+      moment({
+        hour,
+        minute: 30
+      })
+        .add(startHour, 'hours')
+        .format('h:mm A')
+    ); 
 
   }
 
-  const times = ['9:00am', '9:30am', '10:00am', '10:30am', '11:00am', '11:30am', '10:30am', '11:00am', '11:30am', '11:00am', '11:30am', '10:30am', '11:00am', '11:30am', '11:00am', '11:30am'];
+  //fix extra time increment 
+  // if (hours[hours.length - 1][-2] == endTime){
+  //    hours.pop();
+  // }
+ 
+
+    
 
   const Mon = 'Mon';
   const Tue = 'Tue';
@@ -71,7 +105,7 @@ export default () => {
   return (
 
     <div className="selector-content">
-      {times.map((time) => (
+      {hours.map((time) => (
         <Row>
           <div className="time-label">{time}</div>
           {days.map((day) => (
@@ -94,7 +128,7 @@ export default () => {
         <div className="daylabel">{dayname}</div>
       
     ))}
-    
+
     </Row>
     
 
