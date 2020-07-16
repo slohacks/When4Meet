@@ -12,7 +12,13 @@ import {
   About,
   ReoccuringMeeting,
   NameModal,
+<<<<<<< Updated upstream
   Availability
+=======
+  Availability,
+  Selector,
+  Viewer,
+>>>>>>> Stashed changes
 } from "../components";
 
 class Main extends Component {
@@ -38,13 +44,14 @@ class Main extends Component {
             exact
             path="/"
             render={() => (
-              <div className='card-container'>
+              <div className="card-container">
                 <ReoccuringMeeting />
                 <OneTimeMeeting />
               </div>
             )}
           />
           <Route path="/meeting/:id" render={() => <NameModal />} />
+<<<<<<< Updated upstream
           <Route path="/temp" render={() => 
               (<div className='card-container'>
                 <Availability title='Mark your Availability' 
@@ -55,9 +62,27 @@ class Main extends Component {
                 subtitle='Mouse over to see who is availible' 
                 component={<About/>}
                 btn={false}/>
+=======
+          <Route
+            path="/temp"
+            render={() => (
+              <div className="card-container">
+                <Availability
+                  title="Mark your Availability"
+                  subtitle="Click on the times you are availible"
+                  component={<Selector />}
+                  btn={true}
+                />
+                <Availability
+                  title="Team Availability"
+                  subtitle="Mouse over to see who is availible"
+                  component={<Viewer />}
+                  btn={false}
+                />
+>>>>>>> Stashed changes
               </div>
-              )} 
-            />
+            )}
+          />
           <Route path="/about" render={() => <About />} />
         </Switch>
       </div>
