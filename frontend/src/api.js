@@ -1,7 +1,7 @@
 // const baseURL = 'http://localhost:3001/';
 import rp from 'request-promise';
 
-export default function postOneTimeMeeting(state, dayArray) {
+export function postOneTimeMeeting(state, dayArray) {
   const OTM = {
     method: 'POST',
     uri: 'http://localhost:3001/Meeting',
@@ -18,14 +18,16 @@ export default function postOneTimeMeeting(state, dayArray) {
     resolveWithFullResponse: true,
   };
   const location = rp(OTM)
-    .then((parsedBody) => {
-      console.log('PASSED');
-      return (parsedBody.headers.location);
+    .then((response) => {
+      console.log('SUCCESS');
+      return (response.headers.location);
     })
     .catch((err) => {
-      console.log('Failed', err); // POST failed...
-
-export default function postReoccuringMeeting(body) {
+      console.log('FAILED', err);
+    });
+  return location;
+}
+export function postReoccuringMeeting(body) {
   const options = {
     method: 'POST',
     uri: 'http://localhost:3001/Meeting',
