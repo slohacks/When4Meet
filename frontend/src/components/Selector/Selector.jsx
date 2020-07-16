@@ -54,8 +54,6 @@ export default () => {
   // }
  
 
-    
-
   const Mon = 'Mon';
   const Tue = 'Tue';
   const Wed = 'Wed';
