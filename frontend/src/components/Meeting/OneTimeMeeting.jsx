@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
 import './Meeting.css';
-import postOneTimeMeeting from '../../api';
+import { postOneTimeMeeting } from '../../api';
 
 export default () => {
   console.log('Rendering OneTimeMeeting');
