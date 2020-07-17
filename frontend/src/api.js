@@ -1,7 +1,7 @@
 // const baseURL = 'http://localhost:3001/';
 import rp from 'request-promise';
 
-export default function postOneTimeMeeting(state, dayArray) {
+export function postOneTimeMeeting(state, dayArray) {
   const OTM = {
     method: 'POST',
     uri: 'http://localhost:3001/Meeting',

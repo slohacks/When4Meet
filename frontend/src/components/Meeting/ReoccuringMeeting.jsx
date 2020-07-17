@@ -5,7 +5,7 @@ import {
 import './ReoccuringMeeting.css';
 import './Meeting.css';
 import { useHistory } from 'react-router-dom';
-import postReoccuringMeeting from '../../api';
+import { postReoccuringMeeting } from '../../api';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
 
 export default () => {
