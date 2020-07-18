@@ -57,22 +57,40 @@ router.get('/:meetingId', (req, res) => {
   });
 });
 
-router.get('/:meetingId/Availabilty/', (req, res) => {
+router.get('/:meetingId/Availability/', (req, res) => {
   const { meetingId } = req.params;
-  const { name } = req.params;
 
   console.log(`Hitting get availability with ${meetingId} and ${name}`);
 
   res.end();
 });
 
-router.post('/:meetingId/Availabilty/', (req, res) => {
+router.post('/:meetingId/Availability/', (req, res) => {
   const { meetingId } = req.params;
-  const { name } = req.params;
+  const { cnn, body } = req;
+  console.log(`Hitting post availability with ${meetingId} and ${body.name}`);
+  
+  var data = {
+    meetingId: meetingId,
+    ownerName: body.ownerName,
+    times: body.availability,
+  }
 
-  console.log(`Hitting post availability with ${meetingId} and ${name}`);
-
-  res.end();
+  async.waterfall([
+    function (cb) {
+      cnn.chkQry('insert into Availability set ?', [data], cb);
+    },
+    function (result, fields, cb) {
+      res.end('ok');
+      cb();
+    },
+  ],
+  (err) => {
+    if (err) {
+      console.log(err);
+    }
+    cnn.release();
+  });
 });
 
 module.exports = router;
