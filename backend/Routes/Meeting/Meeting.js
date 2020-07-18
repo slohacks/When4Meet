@@ -59,16 +59,35 @@ router.get('/:meetingId', (req, res) => {
 
 router.get('/:meetingId/Availability/', (req, res) => {
   const { meetingId } = req.params;
+  const { cnn } = req;
 
-  console.log(`Hitting get availability with ${meetingId} and ${name}`);
+  console.log(`Hitting get availability with ${meetingId}`);
 
-  res.end();
+  async.waterfall([
+    function (cb) {
+      cnn.chkQry('select * from Availability where meetingId = ?', [meetingId], cb);
+    },
+    function (availArr, fields, cb) {
+      if (availArr.length === 0) {
+        res.status(404).end();
+        cb();
+      } else {
+        res.json(availArr);
+        cb();
+      }
+    },
+  ],
+  (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
 });
 
 router.post('/:meetingId/Availability/', (req, res) => {
   const { meetingId } = req.params;
   const { cnn, body } = req;
-  console.log(`Hitting post availability with ${meetingId} and ${body.name}`);
+  console.log(`Hitting post availability with ${meetingId} and ${body.ownerName}`);
   
   var data = {
     meetingId: meetingId,
