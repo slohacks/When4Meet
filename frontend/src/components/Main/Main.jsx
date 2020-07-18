@@ -55,7 +55,8 @@ class Main extends Component {
                 <Availability title='Team Availability' 
                 subtitle='Mouse over to see who is availible' 
                 component={<About/>}
-                btn={false}/>
+                btn={false}
+                {...this.props}/>
               </div>
               )} 
             />
