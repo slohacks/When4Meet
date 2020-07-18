@@ -12,7 +12,8 @@ import {
   About,
   ReoccuringMeeting,
   NameModal,
-  Availability
+  Availability,
+  Selector
 } from "../components";
 
 class Main extends Component {
@@ -49,9 +50,8 @@ class Main extends Component {
               (<div className='card-container'>
                 <Availability title='Mark your Availability' 
                 subtitle='Click on the times you are availible' 
-                component={<About/>}
-                btn={true}
-                {...this.props}/>
+                component={<Selector/>}
+                btn={true}/>
                 <Availability title='Team Availability' 
                 subtitle='Mouse over to see who is availible' 
                 component={<About/>}
