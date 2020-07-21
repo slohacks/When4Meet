@@ -12,7 +12,8 @@ import {
   About,
   ReoccuringMeeting,
   NameModal,
-  Availability
+  Availability,
+  AvailabilityPage
 } from "../components";
 
 class Main extends Component {
@@ -44,7 +45,7 @@ class Main extends Component {
               </div>
             )}
           />
-          <Route path="/meeting/:id" render={() => <NameModal />} />
+          <Route path="/meeting/:id" render={() => <AvailabilityPage {...this.props}/>} />
           <Route path="/temp" render={() => 
               (<div className='card-container'>
                 <Availability title='Mark your Availability' 
