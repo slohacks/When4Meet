@@ -12,13 +12,9 @@ import {
   About,
   ReoccuringMeeting,
   NameModal,
-<<<<<<< Updated upstream
-  Availability
-=======
   Availability,
   Selector,
-  Viewer,
->>>>>>> Stashed changes
+  Viewer
 } from "../components";
 
 class Main extends Component {
@@ -51,18 +47,6 @@ class Main extends Component {
             )}
           />
           <Route path="/meeting/:id" render={() => <NameModal />} />
-<<<<<<< Updated upstream
-          <Route path="/temp" render={() => 
-              (<div className='card-container'>
-                <Availability title='Mark your Availability' 
-                subtitle='Click on the times you are availible' 
-                component={<About/>}
-                btn={true}/>
-                <Availability title='Team Availability' 
-                subtitle='Mouse over to see who is availible' 
-                component={<About/>}
-                btn={false}/>
-=======
           <Route
             path="/temp"
             render={() => (
@@ -70,16 +54,15 @@ class Main extends Component {
                 <Availability
                   title="Mark your Availability"
                   subtitle="Click on the times you are availible"
-                  component={<Selector />}
+                  component={<About />}
                   btn={true}
                 />
                 <Availability
                   title="Team Availability"
-                  subtitle="Mouse over to see who is availible"
+                  subtitle="Mouse over to see who is available"
                   component={<Viewer />}
                   btn={false}
                 />
->>>>>>> Stashed changes
               </div>
             )}
           />
