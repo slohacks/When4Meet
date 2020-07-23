@@ -6,6 +6,10 @@ import {
 
 export default (props) => {
   console.log(`Rendering Availability with props: ${props}`);
+
+  const { updateMeeting } = props;
+  updateMeeting();
+
   const {
     title, subtitle, component, btn,
   } = props;
