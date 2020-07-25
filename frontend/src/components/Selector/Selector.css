@@ -1,0 +1,34 @@
+.cell{
+    flex-grow: .15;
+    width: 10px;
+    height: 15px;
+    border-radius: 0px;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.cell-enabled {
+    background-color: #0FC697;
+}
+
+.cell-disabled {
+    background-color: #C4C4C4;
+}
+
+.time-label {
+    width: 80px;
+    text-align: left;    
+}
+
+.selector-content{
+    margin: 15px;
+    height: 410px;
+}
+
+.daylabel{
+    flex-grow: .15;
+    width: 10px;
+    height: 15px;
+    border-radius: 0px;
+    text-align: center;
+}
