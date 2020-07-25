@@ -9,6 +9,7 @@ router.post('/', (req, res) => {
   console.log('Hitting Meeting POST endpoint');
 
   const { cnn, body } = req;
+  body.days = JSON.stringify(body.days);
 
   async.waterfall([
     function (cb) {

@@ -13,6 +13,7 @@ import {
   ReoccuringMeeting,
   NameModal,
   Availability,
+  AvailabilityPage,
   Selector,
   Viewer
 } from "../components";
@@ -46,23 +47,19 @@ class Main extends Component {
               </div>
             )}
           />
-          <Route path="/meeting/:id" render={() => <NameModal />} />
-          <Route
-            path="/temp"
-            render={() => (
-              <div className="card-container">
-                <Availability
-                  title="Mark your Availability"
-                  subtitle="Click on the times you are availible"
-                  component={<About />}
-                  btn={true}
-                />
-                <Availability
-                  title="Team Availability"
-                  subtitle="Mouse over to see who is available"
-                  component={<Viewer />}
-                  btn={false}
-                />
+          <Route path="/meeting/:id" render={() => <AvailabilityPage {...this.props}/>} />
+          <Route path="/temp" render={() => 
+              (<div className='card-container'>
+                <Availability title='Mark your Availability' 
+                subtitle='Click on the times you are availible' 
+                component={<About/>}
+                btn={true}
+                {...this.props}/>
+                <Availability title='Team Availability' 
+                subtitle='Mouse over to see who is availible' 
+                component={<About/>}
+                btn={false}
+                {...this.props}/>
               </div>
             )}
           />
