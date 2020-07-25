@@ -13,7 +13,8 @@ import {
   ReoccuringMeeting,
   NameModal,
   Availability,
-  Selector
+  Selector,
+  Viewer
 } from "../components";
 
 class Main extends Component {
@@ -39,27 +40,32 @@ class Main extends Component {
             exact
             path="/"
             render={() => (
-              <div className='card-container'>
+              <div className="card-container">
                 <ReoccuringMeeting />
                 <OneTimeMeeting />
               </div>
             )}
           />
           <Route path="/meeting/:id" render={() => <NameModal />} />
-          <Route path="/temp" render={() => 
-              (<div className='card-container'>
-                <Availability title='Mark your Availability' 
-                subtitle='Click on the times you are availible' 
-                component={<Selector/>}
-                btn={true}/>
-                <Availability title='Team Availability' 
-                subtitle='Mouse over to see who is availible' 
-                component={<About/>}
-                btn={false}
-                {...this.props}/>
+          <Route
+            path="/temp"
+            render={() => (
+              <div className="card-container">
+                <Availability
+                  title="Mark your Availability"
+                  subtitle="Click on the times you are availible"
+                  component={<About />}
+                  btn={true}
+                />
+                <Availability
+                  title="Team Availability"
+                  subtitle="Mouse over to see who is available"
+                  component={<Viewer />}
+                  btn={false}
+                />
               </div>
-              )} 
-            />
+            )}
+          />
           <Route path="/about" render={() => <About />} />
         </Switch>
       </div>
