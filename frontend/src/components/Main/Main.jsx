@@ -14,6 +14,8 @@ import {
   NameModal,
   Availability,
   AvailabilityPage
+  Selector,
+  Viewer
 } from "../components";
 
 class Main extends Component {
@@ -39,7 +41,7 @@ class Main extends Component {
             exact
             path="/"
             render={() => (
-              <div className='card-container'>
+              <div className="card-container">
                 <ReoccuringMeeting />
                 <OneTimeMeeting />
               </div>
@@ -59,8 +61,8 @@ class Main extends Component {
                 btn={false}
                 {...this.props}/>
               </div>
-              )} 
-            />
+            )}
+          />
           <Route path="/about" render={() => <About />} />
         </Switch>
       </div>
