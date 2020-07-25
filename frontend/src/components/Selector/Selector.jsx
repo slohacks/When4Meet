@@ -34,7 +34,7 @@ export default () => {
   }
 
   const [cellState, setCellState] = useState({
-    cellList: days.map(() => [] ),
+    cellList: days.map(() => []),
   });
 
   const onCellSelection = (dayIndex, time) => {
