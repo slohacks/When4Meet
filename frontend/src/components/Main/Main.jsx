@@ -13,7 +13,7 @@ import {
   ReoccuringMeeting,
   NameModal,
   Availability,
-  AvailabilityPage
+  AvailabilityPage,
   Selector,
   Viewer
 } from "../components";
