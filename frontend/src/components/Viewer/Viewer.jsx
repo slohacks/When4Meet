@@ -1,4 +1,3 @@
-/* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 import React from 'react';
 import Popup from 'reactjs-popup';
 import { Row } from 'react-bootstrap';
@@ -6,41 +5,25 @@ import './Viewer.css';
 
 const moment = require('moment');
 
+moment().format();
+
 export default () => {
   console.log('Rendering Viewer');
-
-  moment().format();
 
   // test data
   const startTime = '9:00am';
   const endTime = '5:00pm';
   const days = ['Mon', 'Wed', 'Fri', 'Sat'];
 
-  const startmil = moment(startTime, 'hh:mm A').format('HH:mm');
-  const startt = moment(startmil, 'HH:mm');
-
-  const endmil = moment(endTime, 'hh:mm A').format('HH:mm');
-  const endt = moment(endmil, 'HH:mm');
-
+  const startT = moment(startTime, 'hh:mmA');
+  const endT = moment(endTime, 'hh:mmA');
   const hours = [];
-  const duration = (endt.diff(startt, 'hours'));
-  const endHour = parseInt(duration, 10);
-  const startHour = startTime.slice(0, 4);
 
-  for (let hour = 0; hour < endHour + 1; hour++) {
-    hours.push(
-      moment({ hour })
-        .add(startHour, 'hours')
-        .format('h:mm A'),
-    );
-    hours.push(
-      moment({
-        hour,
-        minute: 30,
-      })
-        .add(startHour, 'hours')
-        .format('h:mm A'),
-    );
+  hours.push(startT.format('hh:mmA'));
+
+  while (startT.format('hh:mmA') !== endT.format('hh:mmA')) {
+    startT.add(30, 'minutes');
+    hours.push(startT.format('hh:mmA'));
   }
 
   return (
