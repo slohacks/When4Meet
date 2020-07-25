@@ -57,22 +57,59 @@ router.get('/:meetingId', (req, res) => {
   });
 });
 
-router.get('/:meetingId/Availabilty/', (req, res) => {
+router.get('/:meetingId/Availability/', (req, res) => {
   const { meetingId } = req.params;
-  const { name } = req.params;
+  const { cnn } = req;
 
-  console.log(`Hitting get availability with ${meetingId} and ${name}`);
+  console.log(`Hitting get availability with ${meetingId}`);
 
-  res.end();
+  async.waterfall([
+    function (cb) {
+      cnn.chkQry('select * from Availability where meetingId = ?', [meetingId], cb);
+    },
+    function (availArr, fields, cb) {
+      if (availArr.length === 0) {
+        res.status(404).end();
+        cb();
+      } else {
+        res.json(availArr);
+        cb();
+      }
+    },
+  ],
+  (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
 });
 
-router.post('/:meetingId/Availabilty/', (req, res) => {
+router.post('/:meetingId/Availability/', (req, res) => {
   const { meetingId } = req.params;
-  const { name } = req.params;
+  const { cnn, body } = req;
+  console.log(`Hitting post availability with ${meetingId} and ${body.ownerName}`);
 
-  console.log(`Hitting post availability with ${meetingId} and ${name}`);
+  const data = {
+    meetingId,
+    ownerName: body.ownerName,
+    times: body.availability,
+  };
 
-  res.end();
+  async.waterfall([
+    function (cb) {
+      cnn.chkQry('insert into Availability set ?', [data], cb);
+    },
+    function (result, fields, cb) {
+      res.end('ok');
+      cb();
+    },
+  ],
+  (err) => {
+    if (err) {
+      console.log(err);
+    }
+    cnn.release();
+  });
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4188ce34-5411-4211-9557-a6172b98711d",
+		"_postman_id": "2ceb48cf-c445-41b4-ba82-bfd4f183047f",
 		"name": "When4Meet tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "acea7c64-f17d-4c2c-95ad-45f0991adc58",
+								"id": "5d2167d2-9c62-4703-956f-d3a9e580be03",
 								"exec": [
 									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
 									"pm.test(\"No body\", () => !pm.response.to.have.body);"
@@ -44,7 +44,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9901f4ff-f138-4274-96f8-b0137b5f5ab1",
+								"id": "a72ec06f-891b-4e79-b7d4-e26d18e104dd",
 								"exec": [
 									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
 									"",
@@ -86,7 +86,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "30dc80d8-17e0-4cc3-9a2c-df91120a7354",
+								"id": "acf1251a-4ca4-42b3-9b9f-12d2baaac76c",
 								"exec": [
 									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
 									"",
@@ -127,7 +127,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "29373966-c714-42e5-a8d7-180d4c956a99",
+								"id": "9ce24a4a-1883-4d9b-b780-5c49500e1c03",
 								"exec": [
 									"pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
 								],
@@ -139,13 +139,121 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/Meeting/4",
+							"raw": "{{url}}/Meeting/40",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"Meeting",
-								"4"
+								"40"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DEV-14-Tests",
+			"item": [
+				{
+					"name": "POST Meeting Availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60621a7c-9489-45d8-a2c2-ee1c512a5e60",
+								"exec": [
+									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerName\": \"Jack\",\n    \"availability\": \"[[‘9:00am’, '12:00pm'],[],[],[],[],[],[1:00pm]]\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Meeting/0/Availability",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Meeting",
+								"0",
+								"Availability"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Meeting Availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3714b8bf-60e0-408f-b616-11bc5af7f493",
+								"exec": [
+									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Meeting/0/Availability",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Meeting",
+								"0",
+								"Availability"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Meeting Availability 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "53890f2c-8b8d-499b-bccd-d876b42f1b9b",
+								"exec": [
+									"pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Meeting/40/Availability",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Meeting",
+								"40",
+								"Availability"
 							]
 						}
 					},
