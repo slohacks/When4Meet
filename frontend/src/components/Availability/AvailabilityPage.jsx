@@ -2,7 +2,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
-import { NameModal, Availability, About } from '../components';
+import {
+  NameModal, Availability, Selector, Viewer,
+} from '../components';
 import './Availability.css';
 
 export default (props) => {
@@ -26,7 +28,7 @@ export default (props) => {
         <Availability
           title="Mark your Availability"
           subtitle="Click on the times you are availible"
-          component={<About />}
+          component={<Selector />}
           btn
           name={name}
           {...props}
@@ -34,7 +36,7 @@ export default (props) => {
         <Availability
           title="Team Availability"
           subtitle="Mouse over to see who is availible"
-          component={<About />}
+          component={<Viewer />}
           btn={false}
           name={name}
           {...props}
