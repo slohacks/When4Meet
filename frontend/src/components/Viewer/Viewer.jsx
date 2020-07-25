@@ -5,8 +5,6 @@ import './Viewer.css';
 
 const moment = require('moment');
 
-moment().format();
-
 export default () => {
   console.log('Rendering Viewer');
 
