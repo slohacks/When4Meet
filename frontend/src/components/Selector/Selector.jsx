@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import './Selector.css';
-import './Container.css';
+import '../Meeting/Meeting.css';
 
 const moment = require('moment');
-// require
+
 moment().format();
 
 const _ = require('lodash');
@@ -22,25 +22,19 @@ export default () => {
   const days = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
 
   // making array of times
-  const startT = moment(startTime, 'hh:mm A');
-  const endT = moment(endTime, 'hh:mm A');
+  const startT = moment(startTime, 'hh:mmA');
+  const endT = moment(endTime, 'hh:mmA');
   const hours = [];
 
-  hours.push(startT.format('hh:mm A'));
+  hours.push(startT.format('hh:mmA'));
 
-  while (startT.format('hh:mm A') !== endT.format('hh:mm A')) {
+  while (startT.format('hh:mmA') !== endT.format('hh:mmA')) {
     startT.add(30, 'minutes');
-    hours.push(startT.format('hh:mm A'));
+    hours.push(startT.format('hh:mmA'));
   }
 
   const [cellState, setCellState] = useState({
-    cellList: days.map(
-      (day, index) => {
-        console.log(day);
-        console.log(index);
-        return [];
-      },
-    ),
+    cellList: days.map(() => [] ),
   });
 
   const onCellSelection = (dayIndex, time) => {
@@ -52,19 +46,18 @@ export default () => {
 
     setCellState({ cellList: cellState.cellList });
   };
-  console.log(cellState);
 
   return (
 
     <div className="selector-content">
-      {hours.map((timey) => (
+      {hours.map((time) => (
         <Row>
-          <div className="time-label">{timey}</div>
+          <div className="time-label">{time}</div>
           {days.map(
             (day, index) => (
               <div
-                onClick={() => onCellSelection(index, timey)}
-                className={cellState.cellList[index].includes(timey) ? 'cell cell-enabled' : ' cell cell-disabled'}
+                onClick={() => onCellSelection(index, time)}
+                className={cellState.cellList[index].includes(time) ? 'cell cell-enabled' : ' cell cell-disabled'}
               />
             ),
           )}
