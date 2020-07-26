@@ -61,3 +61,16 @@ export function getMeeting(meetingId) {
       console.log('FAILED GET MEETING ', err);
     });
 }
+
+export function getAvailability(meetingId) {
+  const options = {
+    method: 'GET',
+    uri: `${baseURL}/Meeting/${meetingId}/Availability`,
+    json: true,
+  };
+
+  return rp(options)
+    .catch((err) => {
+      console.log('FAILED GET AVAILABILITY ', err);
+    });
+}

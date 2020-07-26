@@ -14,10 +14,12 @@ export default (props) => {
     const { location } = props;
     const meetingId = location.pathname.split('/')[2];
     props.updateMeeting(meetingId);
+    props.updateAvailability(meetingId);
   }, []);
 
   const name = useSelector((state) => state.Availability);
   const meeting = useSelector((state) => state.Meeting);
+  console.log('Availability Object: ', name);
 
   return (
     <div>
