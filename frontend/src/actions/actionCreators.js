@@ -8,6 +8,13 @@ export function updateMeeting(meetingId, cb) {
   };
 }
 
+export function updateAvailability(meetingId, cb) {
+  return (dispatch, prevState) => {
+    api.getAvailability(meetingId)
+    .then(availabilityResp => dispatch({type: 'SET_AVAILABILITY', availability: availabilityResp}));
+  };
+}
+
 export function setName(name) {
   return (dispatch, prevState) => {
     dispatch({type: 'SET_NAME', name});

@@ -82,6 +82,7 @@ router.get('/:meetingId/Availability/', (req, res) => {
     if (err) {
       console.log(err);
     }
+    cnn.release();
   });
 });
 
