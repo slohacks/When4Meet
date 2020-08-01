@@ -9,19 +9,25 @@ export default () => {
   console.log('Rendering Viewer');
 
   // test data
+  const testUsers = [
+    { name: 'JP', availability: [['09:00am'], [], [], []] },
+    { name: 'Shriya', availability: [['10:00am'], ['12:00am'], [], []] },
+    { name: 'Cole', availability: [['10:00am'], ['12:30am'], [], []] },
+  ];
+
   const startTime = '9:00am';
   const endTime = '5:00pm';
   const days = ['Mon', 'Wed', 'Fri', 'Sat'];
 
-  const startT = moment(startTime, 'hh:mmA');
-  const endT = moment(endTime, 'hh:mmA');
+  const startT = moment(startTime, 'hh:mma');
+  const endT = moment(endTime, 'hh:mma');
   const hours = [];
 
-  hours.push(startT.format('hh:mmA'));
+  hours.push(startT.format('hh:mma'));
 
-  while (startT.format('hh:mmA') !== endT.format('hh:mmA')) {
+  while (startT.format('hh:mma') !== endT.format('hh:mma')) {
     startT.add(30, 'minutes');
-    hours.push(startT.format('hh:mmA'));
+    hours.push(startT.format('hh:mma'));
   }
 
   return (
@@ -29,11 +35,16 @@ export default () => {
       {hours.map((time) => (
         <Row>
           <div className="time-label">{time}</div>
-          {days.map((day) => (
-            <Popup trigger={<div aria-label={day} className="cell cell-disabled" />} position="left center" on="hover">
-              {time}
-            </Popup>
-          ))}
+          {days.map((day, index) => {
+            if (testUsers.filter((user) => user.availability[index].includes(time)).length !== 0) {
+              return (
+                <Popup trigger={<div className="cell cell-disabled" />} position="left center" on="hover">
+                  {testUsers.filter((user) => user.availability[index].includes(time)).map((filteredUser) => filteredUser.name).join(', ')}
+                </Popup>
+              );
+            }
+            return <div className="cell cell-disabled" />;
+          })}
         </Row>
       ))}
       <Row>
