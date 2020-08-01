@@ -5,5 +5,5 @@ export { default as NameModal } from './Modals/NameModal';
 export { default as About } from './About/About';
 export { default as Availability } from './Availability/Availability';
 export { default as AvailabilityPage } from './Availability/AvailabilityPage';
-export { default as Selector } from './Selector/Selector';
-export { default as Viewer } from './Viewer/Viewer';
+export { default as AvailabilitySelector } from './Availability/AvailabilitySelector';
+export { default as AvailabilityViewer } from './Availability/AvailabilityViewer';

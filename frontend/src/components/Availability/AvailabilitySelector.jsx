@@ -1,14 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
-import './Selector.css';
+import './Availability.css';
 import '../Meeting/Meeting.css';
-
-const moment = require('moment');
-
-moment().format();
-
-const _ = require('lodash');
+import _ from 'lodash';
+import moment from 'moment';
 
 export default () => {
   console.log('Rendering AvailabilitySelector');

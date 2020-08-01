@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import {
-  NameModal, Availability, Selector, Viewer,
+  NameModal, Availability, AvailabilitySelector, AvailabilityViewer,
 } from '../components';
 import './Availability.css';
 
@@ -30,7 +30,7 @@ export default (props) => {
         <Availability
           title="Mark your Availability"
           subtitle="Click on the times you are availible"
-          component={<Selector />}
+          component={<AvailabilitySelector />}
           btn
           name={name}
           {...props}
@@ -38,7 +38,7 @@ export default (props) => {
         <Availability
           title="Team Availability"
           subtitle="Mouse over to see who is availible"
-          component={<Viewer />}
+          component={<AvailabilityViewer />}
           btn={false}
           name={name}
           {...props}

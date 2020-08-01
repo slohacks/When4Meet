@@ -1,12 +1,12 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import { Row } from 'react-bootstrap';
-import './Viewer.css';
+import './Availability.css';
 
 const moment = require('moment');
 
 export default () => {
-  console.log('Rendering Viewer');
+  console.log('Rendering AvailabilityViewer');
 
   // test data
   const startTime = '9:00am';
