@@ -10,9 +10,13 @@ export default () => {
 
   // test data
   const testUsers = [
-    { name: 'JP', availability: [['09:00am'], [], [], []] },
-    { name: 'Shriya', availability: [['10:00am'], ['12:00am'], [], []] },
-    { name: 'Cole', availability: [['10:00am'], ['12:30am'], [], []] },
+    { name: 'JP', availability: [['09:00am'], ['12:00pm'], ['11:00am'], []] },
+    { name: 'Shriya', availability: [['10:00am'], ['12:00pm'], ['11:00am'], []] },
+    { name: 'Cole', availability: [['10:00am'], ['12:30pm'], ['11:00am'], []] },
+    { name: 'Jack', availability: [['10:00am'], ['12:30pm'], ['11:00am'], []] },
+    { name: 'Sam', availability: [['10:00am'], ['12:30pm'], [], []] },
+    { name: 'Max', availability: [['10:00am'], [], [], []] },
+    { name: 'Kyle', availability: [['10:00am'], [], [], []] },
   ];
 
   const startTime = '9:00am';
@@ -37,9 +41,16 @@ export default () => {
           <div className="time-label">{time}</div>
           {days.map((day, index) => {
             const arr = testUsers.filter((user) => user.availability[index].includes(time));
-            if (arr.length !== 0) {
+            const arrLength = arr.length;
+            if (arrLength !== 0) {
+              let name = 'cell cell-enabled-';
+              if (arrLength >= 5) {
+                name += '5';
+              } else {
+                name += arrLength;
+              }
               return (
-                <Popup trigger={<div className="cell cell-disabled" />} position="left center" on="hover">
+                <Popup trigger={<div className={name} />} position="left center" on="hover">
                   {arr.map((filteredUser) => filteredUser.name).join(', ')}
                 </Popup>
               );

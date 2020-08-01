@@ -7,8 +7,24 @@
   margin-left: 3px;
 }
 
-.cell-enabled {
+.cell-enabled-1 {
+  background-color: #12EAB2;
+}
+
+.cell-enabled-2 {
   background-color: #0FC697;
+}
+
+.cell-enabled-3 {
+  background-color: #0DA77F;
+}
+
+.cell-enabled-4 {
+  background-color: #0B8D6C;
+}
+
+.cell-enabled-5 {
+  background-color: #065441;
 }
 
 .cell-disabled {
