@@ -9,7 +9,7 @@ export default () => {
   console.log('Rendering Viewer');
 
   // test data
-  const testUsers = [
+  const users = [
     { name: 'JP', availability: [['09:00am'], ['12:00pm'], ['11:00am'], []] },
     { name: 'Shriya', availability: [['10:00am'], ['12:00pm'], ['11:00am'], []] },
     { name: 'Cole', availability: [['10:00am'], ['12:30pm'], ['11:00am'], []] },
@@ -34,28 +34,34 @@ export default () => {
     hours.push(startT.format('hh:mma'));
   }
 
+  const createCell = (usersAvailable) => {
+    const usersAvailableLength = usersAvailable.length;
+    switch (true) {
+      case (usersAvailableLength === 0):
+        return <div className="cell cell-disabled" />;
+      case (usersAvailableLength >= 5):
+        return (
+          <Popup trigger={<div className="cell cell-enabled-5" />} position="left center" on="hover">
+            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
+          </Popup>
+        );
+      default:
+        return (
+          <Popup trigger={<div className={`cell cell-enabled-${usersAvailableLength}`} />} position="left center" on="hover">
+            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
+          </Popup>
+        );
+    }
+  };
+
   return (
     <div className="selector-content">
       {hours.map((time) => (
         <Row>
           <div className="time-label">{time}</div>
           {days.map((day, index) => {
-            const arr = testUsers.filter((user) => user.availability[index].includes(time));
-            const arrLength = arr.length;
-            if (arrLength !== 0) {
-              let name = 'cell cell-enabled-';
-              if (arrLength >= 5) {
-                name += '5';
-              } else {
-                name += arrLength;
-              }
-              return (
-                <Popup trigger={<div className={name} />} position="left center" on="hover">
-                  {arr.map((filteredUser) => filteredUser.name).join(', ')}
-                </Popup>
-              );
-            }
-            return <div className="cell cell-disabled" />;
+            const usersAvailable = users.filter((user) => user.availability[index].includes(time));
+            return createCell(usersAvailable);
           })}
         </Row>
       ))}
