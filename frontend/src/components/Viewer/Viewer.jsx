@@ -36,10 +36,11 @@ export default () => {
         <Row>
           <div className="time-label">{time}</div>
           {days.map((day, index) => {
-            if (testUsers.filter((user) => user.availability[index].includes(time)).length !== 0) {
+            const arr = testUsers.filter((user) => user.availability[index].includes(time));
+            if (arr.length !== 0) {
               return (
                 <Popup trigger={<div className="cell cell-disabled" />} position="left center" on="hover">
-                  {testUsers.filter((user) => user.availability[index].includes(time)).map((filteredUser) => filteredUser.name).join(', ')}
+                  {arr.map((filteredUser) => filteredUser.name).join(', ')}
                 </Popup>
               );
             }
