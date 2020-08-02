@@ -3,6 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import './NameModal.css';
 
 export default (props) => {
@@ -11,6 +12,7 @@ export default (props) => {
   const [state, setState] = React.useState({
     name: '',
     showModal: true,
+    error: false,
   });
 
   const onChange = (event) => {
@@ -18,8 +20,12 @@ export default (props) => {
   };
 
   const closeModal = () => {
-    props.setName(state.name);
-    setState({ ...state, showModal: false });
+    if (state.name.trim()) {
+      props.setName(state.name);
+      setState({ ...state, showModal: false });
+    } else {
+      setState({ ...state, error: true });
+    }
   };
 
   return (
@@ -40,6 +46,8 @@ export default (props) => {
         <Button variant="primary" size="sm" onClick={closeModal}>
           Continue
         </Button>
+
+        { state.error ? <Alert variant="danger" id="invalid-input">Invalid input</Alert> : null }
 
       </Modal.Body>
 
