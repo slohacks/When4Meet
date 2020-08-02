@@ -36,18 +36,36 @@ export default () => {
 
   const createCell = (usersAvailable) => {
     const usersAvailableLength = usersAvailable.length;
-    switch (true) {
-      case (usersAvailableLength === 0):
+    switch (usersAvailableLength) {
+      case 0:
         return <div className="cell cell-disabled" />;
-      case (usersAvailableLength >= 5):
+      case 1:
         return (
-          <Popup trigger={<div className="cell cell-enabled-5" />} position="left center" on="hover">
+          <Popup trigger={<div className="cell cell-enabled-1" />} position="left center" on="hover">
+            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
+          </Popup>
+        );
+      case 2:
+        return (
+          <Popup trigger={<div className="cell cell-enabled-2" />} position="left center" on="hover">
+            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
+          </Popup>
+        );
+      case 3:
+        return (
+          <Popup trigger={<div className="cell cell-enabled-3" />} position="left center" on="hover">
+            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
+          </Popup>
+        );
+      case 4:
+        return (
+          <Popup trigger={<div className="cell cell-enabled-4" />} position="left center" on="hover">
             {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
           </Popup>
         );
       default:
         return (
-          <Popup trigger={<div className={`cell cell-enabled-${usersAvailableLength}`} />} position="left center" on="hover">
+          <Popup trigger={<div className="cell cell-enabled-5" />} position="left center" on="hover">
             {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
           </Popup>
         );
