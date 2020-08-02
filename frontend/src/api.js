@@ -49,6 +49,26 @@ export function postReoccuringMeeting(body) {
   return location;
 }
 
+export function postAvailabilitySelector(body) {
+  const options = {
+    method: 'POST',
+    uri: `${baseURL}/Meeting/5/Availability`,
+    body,
+    json: true,
+    resolveWithFullResponse: true,
+  };
+
+  const location = rp(options)
+    .then((response) => {
+      console.log('SUCCESS');
+      return (response.headers.location);
+    })
+    .catch((err) => {
+      console.log('FAILED', err);
+    });
+  return location;
+}
+
 export function getMeeting(meetingId) {
   const options = {
     method: 'GET',

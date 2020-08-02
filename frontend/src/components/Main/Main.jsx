@@ -52,7 +52,7 @@ class Main extends Component {
               (<div className='card-container'>
                 <Availability title='Mark your Availability' 
                 subtitle='Click on the times you are availible' 
-                component={<About/>}
+                component={<Selector/>}
                 btn={true}
                 {...this.props}/>
                 <Availability title='Team Availability' 

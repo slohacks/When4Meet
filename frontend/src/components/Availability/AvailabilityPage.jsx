@@ -31,7 +31,7 @@ export default (props) => {
           title="Mark your Availability"
           subtitle="Click on the times you are availible"
           component={<Selector />}
-          btn
+          btn={false}
           name={name}
           {...props}
         />

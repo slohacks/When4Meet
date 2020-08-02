@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Button } from 'react-bootstrap';
 import './Selector.css';
 import '../Meeting/Meeting.css';
+import { useSelector } from 'react-redux';
+import { postAvailabilitySelector } from '../../api';
 
 const moment = require('moment');
 
@@ -12,6 +14,8 @@ const _ = require('lodash');
 
 export default () => {
   console.log('Rendering AvailabilitySelector');
+
+  const name = useSelector((state) => state.Availability.name);
 
   // sample data
   // const name = 'SLO Hacks General Meeting';
@@ -47,6 +51,14 @@ export default () => {
     setCellState({ cellList: cellState.cellList });
   };
 
+  const handleSubmit = () => {
+    const body = {
+      ownerName: name,
+      availability: cellState.cellList,
+    };
+    postAvailabilitySelector(body);
+  };
+
   return (
 
     <div className="selector-content">
@@ -77,6 +89,7 @@ export default () => {
 
       </Row>
 
+      <Button className="primary" type="button" onClick={() => handleSubmit()}>Confirm</Button>
     </div>
 
   );
