@@ -48,3 +48,17 @@
   border-radius: 0px;
   text-align: center;
 }
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-item {
+  flex-grow: 1;
+}
+
+#popup-header {
+  font-weight: bold;
+}
