@@ -36,40 +36,31 @@ export default () => {
 
   const createCell = (usersAvailable) => {
     const usersAvailableLength = usersAvailable.length;
+    let cellClassName = 'cell cell-enabled-';
     switch (usersAvailableLength) {
       case 0:
         return <div className="cell cell-disabled" />;
       case 1:
-        return (
-          <Popup trigger={<div className="cell cell-enabled-1" />} position="left center" on="hover">
-            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
-          </Popup>
-        );
+        cellClassName += '1';
+        break;
       case 2:
-        return (
-          <Popup trigger={<div className="cell cell-enabled-2" />} position="left center" on="hover">
-            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
-          </Popup>
-        );
+        cellClassName += '2';
+        break;
       case 3:
-        return (
-          <Popup trigger={<div className="cell cell-enabled-3" />} position="left center" on="hover">
-            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
-          </Popup>
-        );
+        cellClassName += '3';
+        break;
       case 4:
-        return (
-          <Popup trigger={<div className="cell cell-enabled-4" />} position="left center" on="hover">
-            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
-          </Popup>
-        );
+        cellClassName += '4';
+        break;
       default:
-        return (
-          <Popup trigger={<div className="cell cell-enabled-5" />} position="left center" on="hover">
-            {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
-          </Popup>
-        );
+        cellClassName += '5';
+        break;
     }
+    return (
+      <Popup trigger={<div className={cellClassName} />} position="left center" on="hover">
+        {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
+      </Popup>
+    );
   };
 
   return (
