@@ -59,13 +59,18 @@ export default () => {
     return (
       <Popup trigger={<div className={cellClassName} />} position="left center" on="hover">
         <div className="popup-container">
-          <h7 id="popup-header">{usersAvailableLength}/{totalUsers} Users Available:</h7>
-          {usersAvailable.map((filteredUser) => {
-            return (
-              <div className="popup-item">
-                {filteredUser.name}
-              </div>
-            )})}
+          <h7 id="popup-header">
+            {usersAvailableLength}
+            /
+            {totalUsers}
+            {' '}
+            Users Available:
+          </h7>
+          {usersAvailable.map((filteredUser) => (
+            <div className="popup-item">
+              {filteredUser.name}
+            </div>
+          ))}
         </div>
       </Popup>
     );
