@@ -22,7 +22,7 @@ export default (props) => {
   const closeModal = (event) => {
     event.preventDefault();
     if (state.name.trim()) {
-      props.setName(state.name);
+      props.setName(state.name.trim());
       setState({ ...state, showModal: false });
     } else {
       setState({ ...state, error: true });
@@ -42,7 +42,7 @@ export default (props) => {
             <Form.Label><h5>What&apos;s your name?</h5></Form.Label>
             <Form.Control placeholder="Name" onChange={onChange} value={state.name} />
           </Form.Group>
-          <Button variant="primary" type="submit" size="sm">
+          <Button variant="primary" type="submit" disabled={!state.name} size="sm">
             Continue
           </Button>
         </Form>
