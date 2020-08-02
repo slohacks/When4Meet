@@ -57,16 +57,7 @@ export function postAvailabilitySelector(body) {
     json: true,
     resolveWithFullResponse: true,
   };
-
-  const location = rp(options)
-    .then((response) => {
-      console.log('SUCCESS');
-      return (response.headers.location);
-    })
-    .catch((err) => {
-      console.log('FAILED', err);
-    });
-  return location;
+  rp(options);
 }
 
 export function getMeeting(meetingId) {
