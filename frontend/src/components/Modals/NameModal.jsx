@@ -47,7 +47,7 @@ export default (props) => {
           </Button>
         </Form>
 
-        { state.error ? <Alert variant="danger" id="invalid-input">Invalid input</Alert> : null }
+        { state.error ? <Alert variant="warning" id="invalid-input">Invalid input</Alert> : null }
 
       </Modal.Body>
 
