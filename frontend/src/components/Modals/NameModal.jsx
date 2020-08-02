@@ -19,7 +19,8 @@ export default (props) => {
     setState({ ...state, name: event.target.value });
   };
 
-  const closeModal = () => {
+  const closeModal = (event) => {
+    event.preventDefault();
     if (state.name.trim()) {
       props.setName(state.name);
       setState({ ...state, showModal: false });
@@ -36,16 +37,15 @@ export default (props) => {
 
         <Modal.Title className="text-center">Meeting Title</Modal.Title>
 
-        <Form>
+        <Form onSubmit={closeModal}>
           <Form.Group>
             <Form.Label><h5>What&apos;s your name?</h5></Form.Label>
             <Form.Control placeholder="Name" onChange={onChange} value={state.name} />
           </Form.Group>
+          <Button variant="primary" type="submit" size="sm">
+            Continue
+          </Button>
         </Form>
-
-        <Button variant="primary" size="sm" onClick={closeModal}>
-          Continue
-        </Button>
 
         { state.error ? <Alert variant="danger" id="invalid-input">Invalid input</Alert> : null }
 
