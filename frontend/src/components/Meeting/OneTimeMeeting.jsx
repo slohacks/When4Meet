@@ -87,7 +87,7 @@ export default () => {
             </Col>
           </Form.Group>
         </Form.Row>
-        <Button className="primary" type="button" onClick={handleFinalSubmit}>Create Event</Button>
+        <Button className="primary" type="button" disabled={!state.meetingName} onClick={handleFinalSubmit}>Create Event</Button>
       </Form>
     </div>
   );

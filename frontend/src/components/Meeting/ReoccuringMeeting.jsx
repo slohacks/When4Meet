@@ -37,6 +37,8 @@ export default () => {
     endTime: initialEndTime,
   });
 
+  const validation = () => (Object.keys(dayStates).every((k) => dayStates[k] === false));
+
   const onDaySelection = (day) => {
     switch (day) {
       case (Mon):
@@ -162,7 +164,7 @@ export default () => {
             </Form.Row>
           </Form.Group>
         </Form.Row>
-        <Button className="primary" type="button" onClick={() => onFormSubmit()}>Create Event</Button>
+        <Button className="primary" type="button" disabled={validation() || !inputs.meetingTitle} onClick={() => onFormSubmit()}>Create Event</Button>
       </Form>
     </div>
   );
