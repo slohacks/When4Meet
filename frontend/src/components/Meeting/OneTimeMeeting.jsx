@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { DateRange } from 'react-date-range';
 import { addDays } from 'date-fns';
-import { Form, Button, Col, Alert } from 'react-bootstrap';
+import {
+  Form, Button, Col, Alert,
+} from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
@@ -47,11 +49,9 @@ export default () => {
       // Make POST request and then redirect to meeting page
       const location = await postOneTimeMeeting(state, dayArray);
       history.push(location);
-    } 
-    else {
+    } else {
       setState({ ...state, error: true });
     }
-    
   };
 
   return (
@@ -95,7 +95,7 @@ export default () => {
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Col >
+          <Col>
             <Button className="primary" type="button" disabled={!state.meetingName} onClick={handleFinalSubmit}>Create Event</Button>
           </Col>
           <Col>

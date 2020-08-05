@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button, Col, Form, Alert
+  Button, Col, Form, Alert,
 } from 'react-bootstrap';
 import './ReoccuringMeeting.css';
 import './Meeting.css';
@@ -94,10 +94,8 @@ export default () => {
       };
 
       handleFinalSubmit(body);
-    }
-    else {
+    } else {
       setInputs({ ...inputs, error: true });
-
     }
   };
 
