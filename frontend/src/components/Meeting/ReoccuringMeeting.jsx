@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button, Col, Form,
+  Button, Col, Form, Alert
 } from 'react-bootstrap';
 import './ReoccuringMeeting.css';
 import './Meeting.css';
@@ -35,6 +35,7 @@ export default () => {
     meetingTitle: '',
     startTime: initialStartTime,
     endTime: initialEndTime,
+    error: false,
   });
 
   const validation = () => (Object.keys(dayStates).every((k) => dayStates[k] === false));
@@ -74,25 +75,30 @@ export default () => {
   };
 
   const onFormSubmit = () => {
-    // Checks if day has been enabled, if so push name of day to dayArray
-    const dayArray = [];
-    Object.entries(dayStates).forEach((day) => {
-      if (day[1]) {
-        dayArray.push(day[0]);
-      }
-    });
+    if (inputs.meetingTitle.trim()) {
+      // Checks if day has been enabled, if so push name of day to dayArray
+      const dayArray = [];
+      Object.entries(dayStates).forEach((day) => {
+        if (day[1]) {
+          dayArray.push(day[0]);
+        }
+      });
+      const body = {
+        name: inputs.meetingTitle,
+        startTime: inputs.startTime,
+        endTime: inputs.endTime,
+        timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone).toString(),
+        isReoccuring: true,
+        isOneTime: false,
+        days: dayArray,
+      };
 
-    const body = {
-      name: inputs.meetingTitle,
-      startTime: inputs.startTime,
-      endTime: inputs.endTime,
-      timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone).toString(),
-      isReoccuring: true,
-      isOneTime: false,
-      days: dayArray,
-    };
+      handleFinalSubmit(body);
+    }
+    else {
+      setInputs({ ...inputs, error: true });
 
-    handleFinalSubmit(body);
+    }
   };
 
   return (
@@ -164,7 +170,14 @@ export default () => {
             </Form.Row>
           </Form.Group>
         </Form.Row>
-        <Button className="primary" type="button" disabled={validation() || !inputs.meetingTitle} onClick={() => onFormSubmit()}>Create Event</Button>
+        <Form.Row>
+          <Col>
+            <Button className="primary" type="button" disabled={validation() || !inputs.meetingTitle} onClick={() => onFormSubmit()}>Create Event</Button>
+          </Col>
+          <Col>
+            { inputs.error ? <Alert variant="warning" className="p-2">Invalid Meeting Title</Alert> : null }
+          </Col>
+        </Form.Row>
       </Form>
     </div>
   );
