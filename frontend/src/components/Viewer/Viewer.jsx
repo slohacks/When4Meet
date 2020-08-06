@@ -34,7 +34,7 @@ export default () => {
     hours.push(startT.format('hh:mma'));
   }
 
-  const createCell = (usersAvailable) => {
+  const createCell = (usersAvailable, totalUsers) => {
     const usersAvailableLength = usersAvailable.length;
     let cellClassName = 'cell cell-enabled-';
     switch (usersAvailableLength) {
@@ -58,7 +58,20 @@ export default () => {
     }
     return (
       <Popup trigger={<div className={cellClassName} />} position="left center" on="hover">
-        {usersAvailable.map((filteredUser) => filteredUser.name).join(', ')}
+        <div className="popup-container">
+          <h7 id="popup-header">
+            {usersAvailableLength}
+            /
+            {totalUsers}
+            {' '}
+            Users Available:
+          </h7>
+          {usersAvailable.map((filteredUser) => (
+            <div className="popup-item">
+              {filteredUser.name}
+            </div>
+          ))}
+        </div>
       </Popup>
     );
   };
@@ -70,7 +83,8 @@ export default () => {
           <div className="time-label">{time}</div>
           {days.map((day, index) => {
             const usersAvailable = users.filter((user) => user.availability[index].includes(time));
-            return createCell(usersAvailable);
+            const totalUsers = users.length;
+            return createCell(usersAvailable, totalUsers);
           })}
         </Row>
       ))}
