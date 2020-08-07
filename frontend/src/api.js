@@ -49,10 +49,10 @@ export function postReoccuringMeeting(body) {
   return location;
 }
 
-export function postAvailabilitySelector(body) {
+export function postAvailabilitySelector(body, meetingId) {
   const options = {
     method: 'POST',
-    uri: `${baseURL}/Meeting/5/Availability`,
+    uri: `${baseURL}/Meeting/${meetingId}/Availability`,
     body,
     json: true,
     resolveWithFullResponse: true,

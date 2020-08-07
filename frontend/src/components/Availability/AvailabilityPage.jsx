@@ -10,9 +10,12 @@ import './Availability.css';
 export default (props) => {
   console.log('Rendering Availability Page');
 
+  const { location } = props;
+  const meetingId = location.pathname.split('/')[2];
+
   useEffect(() => {
-    const { location } = props;
-    const meetingId = location.pathname.split('/')[2];
+    // const { location } = props;
+    // const meetingId = location.pathname.split('/')[2];
     props.updateMeeting(meetingId);
     props.updateAvailability(meetingId);
   }, []);
@@ -29,15 +32,15 @@ export default (props) => {
       <div className="card-container">
         <Availability
           title="Mark your Availability"
-          subtitle="Click on the times you are availible"
-          component={<Selector />}
+          subtitle="Click on the times you are available"
+          component={<Selector meetingId={meetingId} />}
           btn={false}
           name={name}
           {...props}
         />
         <Availability
           title="Team Availability"
-          subtitle="Mouse over to see who is availible"
+          subtitle="Mouse over to see who is available"
           component={<Viewer />}
           btn={false}
           name={name}

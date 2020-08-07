@@ -1,4 +1,5 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions,
+react/prop-types */
 import React, { useState } from 'react';
 import { Row, Button } from 'react-bootstrap';
 import './Selector.css';
@@ -12,7 +13,7 @@ moment().format();
 
 const _ = require('lodash');
 
-export default () => {
+export default (props) => {
   console.log('Rendering AvailabilitySelector');
 
   const name = useSelector((state) => state.Availability.name);
@@ -56,7 +57,8 @@ export default () => {
       ownerName: name,
       availability: cellState.cellList,
     };
-    postAvailabilitySelector(body);
+
+    postAvailabilitySelector(body, props.meetingId);
   };
 
   return (
