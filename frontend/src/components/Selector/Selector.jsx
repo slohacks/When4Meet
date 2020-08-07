@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions,
 react/prop-types */
 import React, { useState } from 'react';
-import { Row, Button } from 'react-bootstrap';
+import { Row, Button, Modal } from 'react-bootstrap';
 import './Selector.css';
 import '../Meeting/Meeting.css';
 import { useSelector } from 'react-redux';
@@ -14,6 +14,10 @@ moment().format();
 const _ = require('lodash');
 
 export default (props) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   console.log('Rendering AvailabilitySelector');
 
   const name = useSelector((state) => state.Availability.name);
@@ -91,7 +95,21 @@ export default (props) => {
 
       </Row>
 
-      <Button className="primary" type="button" onClick={() => handleSubmit()}>Confirm</Button>
+      <Button className="confirmbut" variant="primary" onClick={handleShow}>Confirm</Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm your Availability</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to submit these times?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button className="primary" type="button" onClick={() => { handleSubmit(); handleClose(); }}>Submit</Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
 
   );
