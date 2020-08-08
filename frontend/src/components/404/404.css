@@ -1,0 +1,10 @@
+h1 {
+   padding-top: 30px;
+   font-size: medium;
+   color: rgb(87, 78, 78);
+   text-align: center;
+}
+
+.not-found-container{
+   text-align: center;
+}

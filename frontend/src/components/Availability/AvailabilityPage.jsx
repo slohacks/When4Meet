@@ -17,9 +17,7 @@ export default (props) => {
     props.updateAvailability(meetingId);
   }, []);
 
-  const name = useSelector((state) => state.Availability);
   const meeting = useSelector((state) => state.Meeting);
-  console.log('Availability Object: ', name);
 
   return (
     <div>
@@ -32,7 +30,6 @@ export default (props) => {
           subtitle="Click on the times you are availible"
           component={<Selector />}
           btn
-          name={name}
           {...props}
         />
         <Availability
@@ -40,7 +37,6 @@ export default (props) => {
           subtitle="Mouse over to see who is availible"
           component={<Viewer />}
           btn={false}
-          name={name}
           {...props}
         />
       </div>
