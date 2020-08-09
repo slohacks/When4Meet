@@ -49,7 +49,7 @@ export function postReoccuringMeeting(body) {
   return location;
 }
 
-export function postAvailabilitySelector(body, meetingId) {
+export function postAvailability(body, meetingId) {
   const options = {
     method: 'POST',
     uri: `${baseURL}/Meeting/${meetingId}/Availability`,

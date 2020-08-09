@@ -5,13 +5,9 @@ import { Row, Button, Modal } from 'react-bootstrap';
 import './Selector.css';
 import '../Meeting/Meeting.css';
 import { useSelector } from 'react-redux';
-import { postAvailabilitySelector } from '../../api';
-
-const moment = require('moment');
-
-moment().format();
-
-const _ = require('lodash');
+import _ from 'lodash';
+import moment from 'moment';
+import { postAvailability } from '../../api';
 
 export default (props) => {
   const [show, setShow] = useState(false);
@@ -21,14 +17,12 @@ export default (props) => {
   console.log('Rendering AvailabilitySelector');
 
   const name = useSelector((state) => state.Availability.name);
+  const meeting = useSelector((state) => state.Meeting.selectedMeeting);
 
-  // sample data
-  // const name = 'SLO Hacks General Meeting';
-  const startTime = '5:00am';
-  const endTime = '12:30pm';
-  // const timezone = 'PST';
-  // const isReoccuring = true;
-  const days = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  const startTime = _.get(meeting, 'startTime', '9:00am');
+  const endTime = _.get(meeting, 'endTime', '5:00pm');
+
+  const days = _.get(meeting, 'days', ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']);
 
   // making array of times
   const startT = moment(startTime, 'hh:mmA');
@@ -59,10 +53,11 @@ export default (props) => {
   const handleSubmit = () => {
     const body = {
       ownerName: name,
-      availability: cellState.cellList,
+      availability: cellState.cellList.slice(0, days.length),
     };
 
-    postAvailabilitySelector(body, props.meetingId);
+    postAvailability(body, props.meetingId);
+    handleClose();
   };
 
   return (
@@ -106,7 +101,7 @@ export default (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button className="primary" type="button" onClick={() => { handleSubmit(); handleClose(); }}>Submit</Button>
+          <Button className="primary" type="button" onClick={handleSubmit}>Submit</Button>
         </Modal.Footer>
       </Modal>
 
