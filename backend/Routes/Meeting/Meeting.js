@@ -90,11 +90,10 @@ router.post('/:meetingId/Availability/', (req, res) => {
   const { meetingId } = req.params;
   const { cnn, body } = req;
   console.log(`Hitting post availability with ${meetingId} and ${body.ownerName}`);
-
   const data = {
     meetingId,
     ownerName: body.ownerName,
-    times: body.availability,
+    times: JSON.stringify(body.availability),
   };
 
   async.waterfall([

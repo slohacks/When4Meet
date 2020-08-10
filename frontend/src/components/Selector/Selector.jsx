@@ -1,25 +1,28 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions,
+react/prop-types */
 import React, { useState } from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Button, Modal } from 'react-bootstrap';
 import './Selector.css';
 import '../Meeting/Meeting.css';
+import { useSelector } from 'react-redux';
+import _ from 'lodash';
+import moment from 'moment';
+import { postAvailability } from '../../api';
 
-const moment = require('moment');
+export default (props) => {
+  const [show, setShow] = useState(false);
 
-moment().format();
-
-const _ = require('lodash');
-
-export default () => {
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   console.log('Rendering AvailabilitySelector');
 
-  // sample data
-  // const name = 'SLO Hacks General Meeting';
-  const startTime = '5:00am';
-  const endTime = '12:30pm';
-  // const timezone = 'PST';
-  // const isReoccuring = true;
-  const days = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  const name = useSelector((state) => state.Availability.name);
+  const meeting = useSelector((state) => state.Meeting.selectedMeeting);
+
+  const startTime = _.get(meeting, 'startTime', '9:00am');
+  const endTime = _.get(meeting, 'endTime', '5:00pm');
+
+  const days = _.get(meeting, 'days', ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']);
 
   // making array of times
   const startT = moment(startTime, 'hh:mmA');
@@ -45,6 +48,16 @@ export default () => {
     }
 
     setCellState({ cellList: cellState.cellList });
+  };
+
+  const handleSubmit = () => {
+    const body = {
+      ownerName: name,
+      availability: cellState.cellList.slice(0, days.length),
+    };
+
+    postAvailability(body, props.meetingId);
+    handleClose();
   };
 
   return (
@@ -76,6 +89,21 @@ export default () => {
         ))}
 
       </Row>
+
+      <Button className="confirmbut" variant="primary" onClick={handleShow}>Confirm</Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm your Availability</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to submit these times?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button className="primary" type="button" onClick={handleSubmit}>Submit</Button>
+        </Modal.Footer>
+      </Modal>
 
     </div>
 
