@@ -1,22 +1,19 @@
-/* eslint-disable */
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import "./Main.css";
+/* eslint-disable react/prefer-stateless-function, react/jsx-props-no-spreading */
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import './Main.css';
 // Styles for react-date-range
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import {
   OneTimeMeeting,
   About,
   ReoccuringMeeting,
-  NameModal,
-  Availability,
   AvailabilityPage,
-  Selector,
-  Viewer
-} from "../components";
+  NotFoundPage,
+} from '../components';
 
 class Main extends Component {
   render() {
@@ -63,7 +60,9 @@ class Main extends Component {
               </div>
             )}
           />
+
           <Route path="/about" render={() => <About />} />
+          <Route path="*" render={() => <NotFoundPage />} />
         </Switch>
       </div>
     );

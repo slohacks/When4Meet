@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { DateRange } from 'react-date-range';
 import { addDays } from 'date-fns';
-import { Form, Button, Col } from 'react-bootstrap';
+import {
+  Form, Button, Col, Alert,
+} from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { START_OPTIONS, END_OPTIONS } from './MeetingConstants';
@@ -24,6 +26,7 @@ export default () => {
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone.toString(),
     isRecurring: null,
     isOneTime: true,
+    error: false,
   };
   const [state, setState] = useState(initialInput);
   const { meetingName, startTime, endTime } = state;
@@ -34,17 +37,21 @@ export default () => {
 
   const history = useHistory();
   const handleFinalSubmit = async () => {
-    // Creates array of days for post request
-    const dayArray = [];
-    const startDate = moment(date[0].startDate);
-    const endDate = moment(date[0].endDate);
-    while (startDate.format('YYYY-MM-DD') !== endDate.format('YYYY-MM-DD')) {
-      dayArray.push(startDate.format('YYYY-MM-DD'));
-      startDate.add(1, 'day');
+    if (state.meetingName.trim()) {
+      // Creates array of days for post request
+      const dayArray = [];
+      const startDate = moment(date[0].startDate);
+      const endDate = moment(date[0].endDate);
+      while (startDate.format('YYYY-MM-DD') !== endDate.format('YYYY-MM-DD')) {
+        dayArray.push(startDate.format('YYYY-MM-DD'));
+        startDate.add(1, 'day');
+      }
+      // Make POST request and then redirect to meeting page
+      const location = await postOneTimeMeeting(state, dayArray);
+      history.push(location);
+    } else {
+      setState({ ...state, error: true });
     }
-    // Make POST request and then redirect to meeting page
-    const location = await postOneTimeMeeting(state, dayArray);
-    history.push(location);
   };
 
   return (
@@ -87,7 +94,14 @@ export default () => {
             </Col>
           </Form.Group>
         </Form.Row>
-        <Button className="primary" type="button" onClick={handleFinalSubmit}>Create Event</Button>
+        <Form.Row>
+          <Col>
+            <Button className="primary" type="button" disabled={!state.meetingName} onClick={handleFinalSubmit}>Create Event</Button>
+          </Col>
+          <Col>
+            { state.error ? <Alert variant="warning" className="p-2">Invalid Meeting Title</Alert> : null }
+          </Col>
+        </Form.Row>
       </Form>
     </div>
   );

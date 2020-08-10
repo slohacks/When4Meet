@@ -42,7 +42,6 @@ export default (props) => {
           subtitle="Mouse over to see who is available"
           component={<Viewer />}
           btn={false}
-          name={name}
           {...props}
         />
       </div>
