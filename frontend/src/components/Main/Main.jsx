@@ -13,7 +13,7 @@ import {
   ReoccuringMeeting,
   AvailabilityPage,
   NotFoundPage,
-  Availability, 
+  Availability,
   Selector,
 } from '../components';
 
@@ -55,7 +55,7 @@ class Main extends Component {
                   title="Mark your Availability"
                   subtitle="Click on the times you are availible"
                   component={<Selector />}
-                  btn={true}
+                  btn
                   {...this.props}
                 />
                 <Availability
