@@ -73,12 +73,10 @@ router.get('/:meetingId/Availability/', (req, res) => {
         res.status(404).end();
         cb();
       } else {
-        const parsedAvailability = availArr.map((response) => {
-          return {
-            name: response.ownerName,
-            times: JSON.parse(response.times),
-          };  
-        })
+        const parsedAvailability = availArr.map((response) => ({
+          name: response.ownerName,
+          times: JSON.parse(response.times),
+        }));
         res.json(parsedAvailability);
         cb();
       }

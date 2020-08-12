@@ -78,8 +78,8 @@ export default () => {
         <Row>
           <div className="time-label">{time}</div>
           {days.map((day, index) => {
-             console.log(time);
-             console.log(users[0] && users[0].times[index])
+            console.log(time);
+            console.log(users[0] && users[0].times[index]);
             const usersAvailable = users.filter((user) => user.times[index].includes(time));
             const totalUsers = users.length;
             return createCell(usersAvailable, totalUsers);

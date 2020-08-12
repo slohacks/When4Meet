@@ -13,7 +13,6 @@ import {
   ReoccuringMeeting,
   AvailabilityPage,
   NotFoundPage,
-  Availability,
 } from '../components';
 
 class Main extends Component {
