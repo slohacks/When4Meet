@@ -12,8 +12,6 @@ export default () => {
 
   const meeting = useSelector((state) => state.Meeting.selectedMeeting);
   const users = useSelector((state) => state.Availability.availability) || [];
-  console.log(meeting);
-  console.log(users);
 
   const startTime = _.get(meeting, 'startTime', '9:00am');
   const endTime = _.get(meeting, 'endTime', '5:00pm');
