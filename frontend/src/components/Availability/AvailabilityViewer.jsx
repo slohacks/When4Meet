@@ -1,27 +1,21 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import { Row } from 'react-bootstrap';
-import './Viewer.css';
+import { useSelector } from 'react-redux';
+import _ from 'lodash';
+import './Availability.css';
 
 const moment = require('moment');
 
 export default () => {
   console.log('Rendering Viewer');
 
-  // test data
-  const users = [
-    { name: 'JP', availability: [['09:00am'], ['12:00pm'], ['11:00am'], []] },
-    { name: 'Shriya', availability: [['10:00am'], ['12:00pm'], ['11:00am'], []] },
-    { name: 'Cole', availability: [['10:00am'], ['12:30pm'], ['11:00am'], []] },
-    { name: 'Jack', availability: [['10:00am'], ['12:30pm'], ['11:00am'], []] },
-    { name: 'Sam', availability: [['10:00am'], ['12:30pm'], [], []] },
-    { name: 'Max', availability: [['10:00am'], [], [], []] },
-    { name: 'Kyle', availability: [['10:00am'], [], [], []] },
-  ];
+  const meeting = useSelector((state) => state.Meeting.selectedMeeting);
+  const users = useSelector((state) => state.Availability.availability) || [];
 
-  const startTime = '9:00am';
-  const endTime = '5:00pm';
-  const days = ['Mon', 'Wed', 'Fri', 'Sat'];
+  const startTime = _.get(meeting, 'startTime', '9:00am');
+  const endTime = _.get(meeting, 'endTime', '5:00pm');
+  const days = _.get(meeting, 'days', []);
 
   const startT = moment(startTime, 'hh:mma');
   const endT = moment(endTime, 'hh:mma');
@@ -82,7 +76,7 @@ export default () => {
         <Row>
           <div className="time-label">{time}</div>
           {days.map((day, index) => {
-            const usersAvailable = users.filter((user) => user.availability[index].includes(time));
+            const usersAvailable = users.filter((user) => user.times[index].includes(time));
             const totalUsers = users.length;
             return createCell(usersAvailable, totalUsers);
           })}

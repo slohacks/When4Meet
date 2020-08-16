@@ -13,8 +13,6 @@ import {
   ReoccuringMeeting,
   AvailabilityPage,
   NotFoundPage,
-  Availability,
-  Selector,
 } from '../components';
 
 class Main extends Component {
@@ -47,28 +45,6 @@ class Main extends Component {
             )}
           />
           <Route path="/meeting/:id" render={() => <AvailabilityPage {...this.props} />} />
-          <Route
-            path="/temp"
-            render={() => (
-              <div className="card-container">
-                <Availability
-                  title="Mark your Availability"
-                  subtitle="Click on the times you are availible"
-                  component={<Selector />}
-                  btn
-                  {...this.props}
-                />
-                <Availability
-                  title="Team Availability"
-                  subtitle="Mouse over to see who is availible"
-                  component={<About />}
-                  btn={false}
-                  {...this.props}
-                />
-              </div>
-            )}
-          />
-
           <Route path="/about" render={() => <About />} />
           <Route path="*" render={() => <NotFoundPage />} />
         </Switch>

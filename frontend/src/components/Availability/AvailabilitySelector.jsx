@@ -2,8 +2,7 @@
 react/prop-types */
 import React, { useState } from 'react';
 import { Row, Button, Modal } from 'react-bootstrap';
-import './Selector.css';
-import '../Meeting/Meeting.css';
+import './Availability.css';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
@@ -25,15 +24,15 @@ export default (props) => {
   const days = _.get(meeting, 'days', ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']);
 
   // making array of times
-  const startT = moment(startTime, 'hh:mmA');
-  const endT = moment(endTime, 'hh:mmA');
+  const startT = moment(startTime, 'hh:mma');
+  const endT = moment(endTime, 'hh:mma');
   const hours = [];
 
-  hours.push(startT.format('hh:mmA'));
+  hours.push(startT.format('hh:mma'));
 
-  while (startT.format('hh:mmA') !== endT.format('hh:mmA')) {
+  while (startT.format('hh:mma') !== endT.format('hh:mma')) {
     startT.add(30, 'minutes');
-    hours.push(startT.format('hh:mmA'));
+    hours.push(startT.format('hh:mma'));
   }
 
   const [cellState, setCellState] = useState({
@@ -70,7 +69,7 @@ export default (props) => {
             (day, index) => (
               <div
                 onClick={() => onCellSelection(index, time)}
-                className={cellState.cellList[index].includes(time) ? 'cell cell-enabled' : ' cell cell-disabled'}
+                className={cellState.cellList[index].includes(time) ? 'cell cell-enabled-3' : ' cell cell-disabled'}
               />
             ),
           )}
