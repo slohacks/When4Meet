@@ -24,5 +24,5 @@ When4Meet is a web application that provides an easy, sleek, and organized exper
 ### Running the App
 1. Navigate to frontend (```cd frontend/```)
 2. Start Development server (```npm start```)
-3. In another command window, Navigate ro backend (```cd frontend/```)
+3. In another command window, Navigate to backend (```cd frontend/```)
 4. Start Backend server (```node main.js -p 3001```)
