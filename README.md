@@ -3,8 +3,10 @@ When4Meet is a web application that provides an easy, sleek, and organized exper
 
 ### Built With
 
-* [React](https://reactjs.org/docs/getting-started.html) - The web framework used
+* [React](https://reactjs.org/docs/getting-started.html) - Frontend web framework used
+* [Express](https://expressjs.com/) - Backend framework used
 * [MYSQL](https://dev.mysql.com/doc/) - Database Management 
+
 
 ### Install requirements
 1. Clone the repo (```https://github.com/slohacks/When4Meet.git```)
